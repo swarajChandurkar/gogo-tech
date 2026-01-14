@@ -10,9 +10,9 @@
   --color-neutral-surface: #F8FAFC;
   --color-background-light: #ffffff;
 
-  /* Font */
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  /* Font - DM Sans (Noah Text alternative) */
+  --font-display: "DM Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
 
   /* Shadows */
   --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.06);

@@ -5,15 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { submitQuote } from "@/app/actions";
 import { QuoteData } from "@/lib/quote-types";
-import { sendGTMEvent } from "@next/third-parties/google";
+import { trackLeadConversion } from "@/lib/analytics";
 import { useState } from "react";
 import { Loader2, CheckCircle } from "lucide-react";
 
 // Client-side schema mirroring server-side for immediate feedback
 const formSchema = z.object({
     companyName: z.string().min(2, "Company name is required"),
-    fleetSize: z.enum(["1-10", "11-50", "50+"], { errorMap: () => ({ message: "Please select a fleet size" }) }),
-    fuelType: z.enum(["Diesel", "Super", "Both"], { errorMap: () => ({ message: "Please select fuel type" }) }),
+    fleetSize: z.enum(["1-10", "11-50", "50+"] as const),
+    fuelType: z.enum(["Diesel", "Super", "Both"] as const),
     email: z.string().email("Invalid email address"),
     phone: z.string().min(8, "Phone number is required"),
 });
@@ -43,10 +43,8 @@ export default function QuoteForm() {
 
             if (result.success) {
                 setSubmitted(true);
-                // Trigger GTM event
-                if (typeof window !== 'undefined') {
-                    sendGTMEvent({ event: "Lead_Generation", value: data.fleetSize });
-                }
+                // Track conversion across all platforms (GTM, LinkedIn, Meta)
+                trackLeadConversion(data.fleetSize);
                 reset();
             } else {
                 setServerError("There was an issue processing your request. Please try again.");

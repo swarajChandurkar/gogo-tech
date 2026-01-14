@@ -61,7 +61,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <motion.div
             initial={{ opacity: 1 }}
             animate={{
-                opacity: phase === "done" ? 0 : 1,
+                opacity: 1,
                 backgroundColor: phase === "merging" ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)"
             }}
             transition={{
