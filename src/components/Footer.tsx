@@ -82,9 +82,10 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-slate-400">© 2024 GoGo Technologies Inc. All rights reserved.</p>
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 items-center">
                         <span className="text-xs text-slate-400">English</span>
                         <span className="text-xs text-slate-400">Français</span>
+                        <Link href="/admin" className="text-xs text-slate-300 hover:text-primary transition-colors">Staff</Link>
                     </div>
                 </div>
             </div>

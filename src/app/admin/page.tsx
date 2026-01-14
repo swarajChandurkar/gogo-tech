@@ -18,9 +18,22 @@ export default async function AdminPage() {
                         <h1 className="text-3xl font-extrabold text-slate-900">Admin Dashboard</h1>
                         <p className="text-slate-500 mt-1">Real-time B2B Quote Requests</p>
                     </div>
-                    <div className="bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
-                        <span className="text-sm font-semibold text-slate-600">Total Leads: </span>
-                        <span className="text-lg font-bold text-primary">{leads.length}</span>
+                    <div className="flex items-center gap-4">
+                        <form action={async () => {
+                            "use server";
+                            const { cookies } = await import("next/headers");
+                            (await cookies()).delete("admin_session");
+                            const { redirect } = await import("next/navigation");
+                            redirect("/admin/login");
+                        }}>
+                            <button type="submit" className="text-sm font-semibold text-slate-500 hover:text-red-600 transition-colors">
+                                Sign Out
+                            </button>
+                        </form>
+                        <div className="bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                            <span className="text-sm font-semibold text-slate-600">Total Leads: </span>
+                            <span className="text-lg font-bold text-primary">{leads.length}</span>
+                        </div>
                     </div>
                 </div>
 
