@@ -9,59 +9,97 @@
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <style>
+        /* Local Override to handle full screen layout correctly */
+        body {
+            overflow-x: hidden;
+        }
+
+        .site-footer {
+            margin-top: 0;
+        }
+    </style>
 </head>
 
 <body>
-    <main>
-        <section class="hero" style="min-height: 300px;">
-            <div class="container hero-content">
-                <h1>Contact Us</h1>
-                <p>We're here to help.</p>
-            </div>
-        </section>
+    <!-- Header injected by app.js -->
 
-        <section class="section-padding">
-            <div class="container">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
-                    <div>
-                        <h3>Get in Touch</h3>
-                        <p style="margin-bottom: 2rem;">24/7 Support for Fleet and Mobile App users.</p>
+    <main style="padding-top: 0;"> <!-- Override padding for full screen layout -->
+        <div class="contact-hero-wrapper">
+            <!-- Left: Info Panel (Dark) -->
+            <div class="contact-info-panel">
+                <div style="position: relative; z-index: 2;" class="animate-fade-up">
+                    <span
+                        style="color: var(--color-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Contact
+                        Us</span>
+                    <h1 style="font-size: 3.5rem; margin-top: 1rem; margin-bottom: 2rem;">Let's Move <br>Forward.</h1>
+                    <p style="opacity: 0.8; font-size: 1.1rem; max-width: 400px; margin-bottom: 3rem;">Ready to optimize
+                        your fleet? Our team of energy experts is standing by to design your custom solution.</p>
 
-                        <div style="margin-bottom: 2rem;">
-                            <strong>📍 Head Office:</strong>
-                            <p>123 Energy Ave, Logistics Park<br>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div style="margin-bottom: 2rem;">
-                            <strong>📞 Phone:</strong>
-                            <p>+225 01 02 03 04</p>
-                        </div>
-                        <div style="margin-bottom: 2rem;">
-                            <strong>📧 Email:</strong>
-                            <p>support@gogo.africa</p>
-                        </div>
-                    </div>
-                    <div>
-                        <!-- Reusing the form structure from B2B but slightly different -->
-                        <form style="background: var(--color-light-gray); padding: 2rem; border-radius: 8px;">
-                            <div class="form-group">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control">
+                    <div class="glass-card">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div>
+                                <h4 style="margin-bottom: 0.25rem;">Headquarters</h4>
+                                <p style="font-size: 0.9rem; opacity: 0.7;">123 Innovation Drive, Cotonou, Benin</p>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div>
+                                <h4 style="margin-bottom: 0.25rem;">Phone</h4>
+                                <p style="font-size: 0.9rem; opacity: 0.7;">+229 21 00 00 00</p>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Message</label>
-                                <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div>
+                                <h4 style="margin-bottom: 0.25rem;">Email</h4>
+                                <p style="font-size: 0.9rem; opacity: 0.7;">business@gogo.africa</p>
                             </div>
-                            <button class="btn btn-primary" style="width: 100%;">Send Message</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
+                <!-- Abstract Background Blobs -->
+                <div
+                    style="position: absolute; top: -10%; right: -10%; width: 400px; height: 400px; background: var(--color-primary); filter: blur(100px); opacity: 0.1; border-radius: 50%;">
+                </div>
+                <div
+                    style="position: absolute; bottom: -10%; left: -10%; width: 300px; height: 300px; background: var(--color-accent); filter: blur(80px); opacity: 0.1; border-radius: 50%;">
+                </div>
             </div>
-        </section>
+
+            <!-- Right: Form Panel (Light) -->
+            <div class="contact-form-panel">
+                <div class="animate-fade-up animate-delay-2" style="max-width: 500px; width: 100%; margin: 0 auto;">
+                    <h2 style="margin-bottom: 2rem;">Send a Message</h2>
+                    <form onsubmit="event.preventDefault(); alert('Message sent!');">
+                        <div class="modern-form-group">
+                            <input type="text" class="modern-form-input" required>
+                            <label>Full Name</label>
+                        </div>
+                        <div class="modern-form-group">
+                            <input type="email" class="modern-form-input" required>
+                            <label>Email Address</label>
+                        </div>
+                        <div class="modern-form-group">
+                            <input type="tel" class="modern-form-input" required>
+                            <label>Phone Number</label>
+                        </div>
+                        <div class="modern-form-group">
+                            <textarea class="modern-form-input" rows="1" required style="resize: none;"></textarea>
+                            <label>How can we help?</label>
+                        </div>
+                        <button type="submit" class="btn-black"
+                            style="margin-top: 2rem; justify-content: space-between;">
+                            Send Message <span>&rarr;</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
+
     <script src="assets/js/app.js"></script>
 </body>
 

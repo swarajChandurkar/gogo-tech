@@ -104,6 +104,161 @@
     z-index: 1;
 }
 
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    /* Default alignment fix */
+    transition: transform 10s ease;
+}
+
+.hero:hover .hero-image img {
+    transform: scale(1.05);
+    /* Subtle zoom */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.6) 50%, rgba(5, 5, 5, 0.1) 100%);
+    z-index: 2;
+}
+
+/* Contact Page Modern Styles */
+.contact-hero-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+.contact-info-panel {
+    background: var(--color-deep-black);
+    color: white;
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-panel {
+    background: white;
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    animation: fadeUp 0.8s ease-out 0.2s backwards;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateX(10px);
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: var(--color-black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.modern-form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.modern-form-group label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1rem 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #999;
+}
+
+.modern-form-input {
+    width: 100%;
+    padding: 1rem 0;
+    border: none;
+    border-bottom: 2px solid #eee;
+    background: transparent;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.modern-form-input:focus {
+    border-bottom-color: var(--color-black);
+}
+
+.modern-form-input:focus~label,
+.modern-form-input:valid~label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: var(--color-black);
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-delay-1 {
+    animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.2s;
+}
+
+/* Responsive Contact */
+@media (max-width: 900px) {
+    .contact-hero-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-panel,
+    .contact-form-panel {
+        padding: 4rem 2rem;
+    }
+}
+
 /* Multi-Service Slider (CAFU Style) */
 .multi-service-section {
     padding: 6rem 0;
@@ -217,6 +372,7 @@
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 1.5rem;
     background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
