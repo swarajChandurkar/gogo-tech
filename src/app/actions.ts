@@ -1,6 +1,8 @@
 "use server";
 
 import { QuoteSchema, QuoteData, QuoteFormResult } from "@/lib/quote-types";
+import { saveLead } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export async function submitQuote(data: QuoteData): Promise<QuoteFormResult> {
     // Validate
@@ -13,8 +15,14 @@ export async function submitQuote(data: QuoteData): Promise<QuoteFormResult> {
         };
     }
 
-    // Log the submission (in production, save to DB or send email)
-    console.log("✅ B2B Quote Submission:", validatedFields.data);
+    // Save to local "database" (JSON file)
+    await saveLead(validatedFields.data);
+
+    // Log for debug
+    console.log("✅ B2B Quote Saved:", validatedFields.data);
+
+    // Revalidate admin page so new lead shows up immediately
+    revalidatePath('/admin');
 
     // Simulate processing delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
