@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Download } from "lucide-react";
 
 export default function Hero() {
@@ -59,15 +60,13 @@ export default function Hero() {
                             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">For Business</span>
                             <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">Fleet Management & Partnerships</h3>
                             <p className="text-slate-500 text-sm mb-6 leading-relaxed">Fueling, analytics, and maintenance solutions tailored for corporate fleets.</p>
-                            <a
-                                href="https://gogofuelapp.on-demand-app.com/business/login"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                href="/quote"
                                 className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#d65a15] transition-colors shadow-lg shadow-accent/20"
                             >
                                 Request Quote
                                 <ArrowRight className="w-4 h-4" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
