@@ -10,35 +10,11 @@ import "./globals.css";
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "GoGo Imperial Energy | Smart Fuel Delivery in Benin",
-  description: "Smart fuel delivery for businesses and individuals in Benin. On-site fueling, fleet management, and 24/7 support.",
-  keywords: ["fuel delivery", "Benin", "fleet management", "B2B fuel", "GoGo", "Cotonou"],
-  authors: [{ name: "GoGo Imperial Energy" }],
-  openGraph: {
-    title: "GoGo Imperial Energy",
-    description: "Smart fuel delivery for businesses and individuals in Benin",
-    url: "https://gogo.bj",
-    siteName: "GoGo Imperial Energy",
-    locale: "fr_BJ",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "GoGo Imperial Energy",
-    description: "Smart fuel delivery in Benin",
-  },
-  alternates: {
-    canonical: "https://gogo.bj",
-    languages: {
-      "en": "https://gogo.bj?lang=en",
-      "fr": "https://gogo.bj?lang=fr",
-    },
-  },
-};
+// ... metadata ...
 
 export default function RootLayout({
   children,
@@ -151,11 +127,11 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} antialiased bg-white text-slate-900 font-sans`}
       >
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager - Keep early load */}
         <GoogleTagManager gtmId="GTM-XXXXXX" />
 
-        {/* LinkedIn Insight Tag */}
-        <Script id="linkedin-insight" strategy="afterInteractive">
+        {/* LinkedIn Insight Tag - Lazy Load */}
+        <Script id="linkedin-insight" strategy="lazyOnload">
           {`
                         _linkedin_partner_id = "LINKEDIN-PARTNER-ID";
                         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -175,8 +151,8 @@ export default function RootLayout({
             src="https://px.ads.linkedin.com/collect/?pid=LINKEDIN-PARTNER-ID&fmt=gif" />
         </noscript>
 
-        {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        {/* Meta Pixel - Lazy Load */}
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
                         !function(f,b,e,v,n,t,s)
                         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

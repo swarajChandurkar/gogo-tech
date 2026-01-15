@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: ['/admin/', '/api/', '/_next/', '/private/'],
+            disallow: ['/admin/', '/api/', '/_next/'],
         },
         sitemap: 'https://gogo.bj/sitemap.xml',
     };

@@ -21,6 +21,25 @@
   /* Border radius */
   --radius-3xl: 1.5rem;
   --radius-pill: 9999px;
+
+  /* Animations */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  --animate-marquee: marquee 25s linear infinite;
+}
+
+/* Utilities */
+.animate-marquee {
+  animation: var(--animate-marquee);
+  will-change: transform;
 }
 
 /* Base styles */
