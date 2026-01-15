@@ -1,14 +1,18 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { dictionary } from "@/data/translations";
 
 type Lang = "EN" | "FR";
+
+// Use a looser type that accepts both EN and FR translations
+type TranslationType = typeof dictionary.en | typeof dictionary.fr;
 
 interface LangContextType {
     lang: Lang;
     toggleLang: () => void;
-    t: (en: string, fr: string) => string;
+    t: TranslationType;
 }
 
 const LangContext = createContext<LangContextType | undefined>(undefined);
@@ -39,8 +43,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
         router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
-    // Simple translation helper
-    const t = (en: string, fr: string) => (lang === "EN" ? en : fr);
+    // Get translations based on current language
+    const t = useMemo(() => {
+        return lang === "EN" ? dictionary.en : dictionary.fr;
+    }, [lang]);
 
     return (
         <LangContext.Provider value={{ lang, toggleLang, t }}>
@@ -56,3 +62,6 @@ export function useLang() {
     }
     return context;
 }
+
+// Re-export dictionary for direct access if needed
+export { dictionary };

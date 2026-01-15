@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useLang } from "@/context/LangContext";
 
 export default function HowItWorks() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { t } = useLang();
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
@@ -14,8 +17,8 @@ export default function HowItWorks() {
     // Apply spring physics for smooth, weighted motion
     const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-    // Truck movement: 0% -> 40% screen width as scroll progresses 0-50%
-    const truckX = useTransform(smoothProgress, [0, 0.5], ["0%", "40%"]);
+    // Truck movement: starts off-screen left, drives to right side
+    const truckX = useTransform(smoothProgress, [0, 0.5, 1], ["-100%", "0%", "100%"]);
 
     // Text opacity transitions
     const text1Opacity = useTransform(smoothProgress, [0, 0.2, 0.35], [0, 1, 0]);
@@ -37,10 +40,10 @@ export default function HowItWorks() {
                             className="absolute inset-0 flex flex-col justify-center"
                         >
                             <h2 className="text-5xl md:text-7xl font-bold text-black mb-4">
-                                Running <span className="text-secondary">Low?</span>
+                                {t.howItWorks.step1Title} <span className="text-secondary">{t.howItWorks.step1Highlight}</span>
                             </h2>
                             <p className="text-xl text-gray-600">
-                                Don&apos;t worry about finding a gas station.
+                                {t.howItWorks.step1Desc}
                             </p>
                         </motion.div>
 
@@ -50,10 +53,10 @@ export default function HowItWorks() {
                             className="flex flex-col justify-center"
                         >
                             <h2 className="text-5xl md:text-7xl font-bold text-black mb-4">
-                                We Come <span className="text-primary">To You.</span>
+                                {t.howItWorks.step2Title} <span className="text-primary">{t.howItWorks.step2Highlight}</span>
                             </h2>
                             <p className="text-xl text-gray-600 mb-8">
-                                Order fuel via the app and we&apos;ll deliver it straight to your location.
+                                {t.howItWorks.step2Desc}
                             </p>
 
                             {/* Floating Pump */}
@@ -71,7 +74,7 @@ export default function HowItWorks() {
                         </motion.div>
                     </div>
 
-                    {/* Right: Truck (Desktop Only) */}
+                    {/* Right: Truck (Desktop Only) - Drives across screen */}
                     <motion.div
                         style={{ x: truckX }}
                         className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-auto z-10"

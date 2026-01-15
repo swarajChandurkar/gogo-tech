@@ -5,13 +5,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { businessPortalUrl } from "@/lib/fuel-config";
-
 import { useLang } from "@/context/LangContext";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { lang, toggleLang } = useLang();
+    const { lang, toggleLang, t } = useLang();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,11 +21,10 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { href: "#services", label: "Services" },
-        { href: "#about", label: "About" },
-        { href: "#safety", label: "Safety" },
-        // "Login" now points to external portal
-        { href: businessPortalUrl, label: "Login", external: true },
+        { href: "#services", label: t.nav.services },
+        { href: "#about", label: t.nav.about },
+        { href: "#safety", label: t.nav.safety },
+        { href: businessPortalUrl, label: t.nav.login, external: true },
     ];
 
     return (
@@ -88,7 +86,7 @@ export default function Navbar() {
                             href="/quote"
                             className="hidden sm:flex items-center justify-center bg-black text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                         >
-                            Request a B2B Quote
+                            {t.nav.quote}
                         </Link>
 
                         {/* Mobile Menu Toggle */}
@@ -150,7 +148,7 @@ export default function Navbar() {
                             onClick={() => setMobileMenuOpen(false)}
                             className="bg-black text-white px-6 py-3 rounded-full text-sm font-bold text-center"
                         >
-                            Request a B2B Quote
+                            {t.nav.quote}
                         </Link>
                     </div>
                 </div>

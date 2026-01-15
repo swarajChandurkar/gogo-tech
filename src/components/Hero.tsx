@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
 export default function Hero() {
+    const { t } = useLang();
+
     return (
         <header className="relative w-full flex flex-col items-center">
             {/* Hero Background & Main Content */}
@@ -32,12 +35,12 @@ export default function Hero() {
 
                     {/* Headline */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6 drop-shadow-sm">
-                        We <span className="text-primary italic">Go</span> to your location,<br /> so you keep going.
+                        {t.hero.title} <span className="text-primary italic">{t.hero.titleHighlight}</span>,<br />so you keep going.
                     </h1>
 
                     {/* Subheadline */}
                     <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-medium">
-                        The smart fuel delivery and vehicle service network for modern fleets and busy individuals.
+                        {t.hero.subtitle}
                     </p>
                 </div>
             </div>
@@ -57,14 +60,14 @@ export default function Hero() {
                             <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
                         </div>
                         <div className="flex-1 flex flex-col items-start text-left w-full">
-                            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">For Business</span>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">Fleet Management & Partnerships</h3>
-                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">Fueling, analytics, and maintenance solutions tailored for corporate fleets.</p>
+                            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">{t.b2b.badge}</span>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">{t.b2b.title}</h3>
+                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">{t.b2b.subtitle.substring(0, 80)}...</p>
                             <Link
                                 href="/quote"
                                 className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#d65a15] transition-colors shadow-lg shadow-accent/20"
                             >
-                                Request Quote
+                                {t.b2b.cta}
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
                         </div>
@@ -83,11 +86,11 @@ export default function Hero() {
                         </div>
                         <div className="flex-1 flex flex-col items-start text-left w-full">
                             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">For Individuals</span>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">Mobile App Delivery</h3>
-                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">Get fuel, car wash, and service delivered to your driveway or office.</p>
+                            <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">{t.app.title}</h3>
+                            <p className="text-slate-500 text-sm mb-6 leading-relaxed">{t.app.subtitle.substring(0, 80)}...</p>
                             <button className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-900 border-2 border-slate-200 px-6 py-3 rounded-full text-sm font-bold hover:border-primary hover:bg-primary/5 transition-colors">
                                 <Download className="w-5 h-5" />
-                                Download App
+                                {t.nav.quote.includes("B2B") ? "Download App" : "Télécharger l'App"}
                             </button>
                         </div>
                     </div>

@@ -1,0 +1,263 @@
+/**
+ * Full Localization Dictionary for GoGo Imperial Energy
+ * Supports English (EN) and French (FR)
+ */
+
+export const dictionary = {
+    en: {
+        nav: {
+            home: "Home",
+            services: "Services",
+            about: "About",
+            safety: "Safety",
+            login: "Login",
+            quote: "Request a B2B Quote",
+        },
+        hero: {
+            title: "We Go to",
+            titleHighlight: "Your Location",
+            subtitle: "On-demand fuel delivery for your fleet or personal vehicle. Skip the gas station.",
+            cta: "Get Started",
+            ctaSecondary: "Learn More",
+            stats: {
+                partners: "Corporate Partners",
+                deliveries: "Deliveries Made",
+                rating: "Customer Rating",
+            },
+        },
+        b2b: {
+            badge: "FOR BUSINESSES",
+            title: "Fleet Solutions That Scale",
+            subtitle: "Manage your entire fleet's fuel needs from one dashboard. Real-time tracking, invoicing, and analytics.",
+            cta: "Request Quote",
+            features: {
+                onsite: "On-Site Fueling",
+                onsiteDesc: "We come to your depot, warehouse, or construction site.",
+                analytics: "Consumption Analytics",
+                analyticsDesc: "Track every liter with detailed reports and insights.",
+                billing: "Flexible Billing",
+                billingDesc: "Net-30 payment terms and consolidated invoicing.",
+            },
+        },
+        app: {
+            title: "Fueling your life",
+            titleHighlight: "on demand.",
+            subtitle: "Skip the gas station. Order fuel, wash, and service with a tap. Available now in your city.",
+            eta: "Estimated Arrival",
+            appStore: "App Store",
+            playStore: "Google Play",
+        },
+        howItWorks: {
+            step1Title: "Running",
+            step1Highlight: "Low?",
+            step1Desc: "Don't worry about finding a gas station.",
+            step2Title: "We Come",
+            step2Highlight: "To You.",
+            step2Desc: "Order fuel via the app and we'll deliver it straight to your location.",
+        },
+        faq: {
+            title: "Frequently Asked Questions",
+            items: [
+                {
+                    q: "How does GoGo fuel delivery work?",
+                    a: "Simply request fuel through our app or website, and our certified drivers will deliver directly to your location.",
+                },
+                {
+                    q: "What areas do you serve?",
+                    a: "We currently serve Cotonou and surrounding areas in Benin, with expansion plans underway.",
+                },
+                {
+                    q: "What fuel types are available?",
+                    a: "We offer both Super (Gasoline) and Diesel at government-regulated prices.",
+                },
+                {
+                    q: "Is it safe?",
+                    a: "Absolutely. Our drivers are certified, and our trucks meet the strictest safety standards.",
+                },
+            ],
+        },
+        footer: {
+            tagline: "The future of energy delivery. We keep your world moving with reliable, safe, and on-demand services.",
+            company: "Company",
+            aboutUs: "About Us",
+            careers: "Careers",
+            newsroom: "Newsroom",
+            contact: "Contact",
+            services: "Services",
+            fuelDelivery: "Fuel Delivery",
+            fleetMaintenance: "Fleet Maintenance",
+            carWash: "Car Wash",
+            evCharging: "EV Charging",
+            legal: "Legal",
+            privacy: "Privacy Policy",
+            terms: "Terms of Service",
+            cookies: "Cookie Policy",
+            copyright: "All rights reserved.",
+        },
+        quote: {
+            backToHome: "Back to Home",
+            title: "Fuel your fleet efficiently in",
+            titleHighlight: "Benin.",
+            subtitle: "Join over 500+ corporate partners who trust GoGo for reliable on-site fueling, maintenance, and detailed consumption analytics.",
+            benefits: [
+                "Save ~15% on operational costs",
+                "Real-time digital receipts",
+                "24/7 Priority Support",
+                "Net-30 Payment Terms available",
+            ],
+            trusted: "Trusted By Leaders",
+            form: {
+                companyName: "Company Name",
+                fleetSize: "Fleet Size",
+                fuelType: "Primary Fuel",
+                email: "Work Email",
+                phone: "Phone Number",
+                submit: "Get Custom Quote",
+                submitting: "Processing...",
+                disclaimer: "By submitting, you agree to receive commercial communications from GoGo Imperial Energy.",
+            },
+            success: {
+                title: "Quote Requested!",
+                message: "Our sales team will contact you within 2 business hours.",
+                another: "Submit another request",
+            },
+        },
+        ticker: {
+            live: "LIVE FUEL",
+            super: "Super (Gasoline)",
+            diesel: "Diesel",
+            delivery: "Delivery",
+            available: "AVAILABLE",
+        },
+    },
+    fr: {
+        nav: {
+            home: "Accueil",
+            services: "Services",
+            about: "À Propos",
+            safety: "Sécurité",
+            login: "Connexion",
+            quote: "Demander un Devis B2B",
+        },
+        hero: {
+            title: "Nous Venons",
+            titleHighlight: "Chez Vous",
+            subtitle: "Livraison de carburant à la demande pour votre flotte ou véhicule personnel. Évitez la station-service.",
+            cta: "Commencer",
+            ctaSecondary: "En Savoir Plus",
+            stats: {
+                partners: "Partenaires Entreprises",
+                deliveries: "Livraisons Effectuées",
+                rating: "Note Client",
+            },
+        },
+        b2b: {
+            badge: "POUR LES ENTREPRISES",
+            title: "Solutions Flotte Évolutives",
+            subtitle: "Gérez les besoins en carburant de toute votre flotte depuis un seul tableau de bord. Suivi en temps réel, facturation et analyses.",
+            cta: "Demander un Devis",
+            features: {
+                onsite: "Ravitaillement Sur Site",
+                onsiteDesc: "Nous venons à votre dépôt, entrepôt ou chantier.",
+                analytics: "Analyses de Consommation",
+                analyticsDesc: "Suivez chaque litre avec des rapports détaillés.",
+                billing: "Facturation Flexible",
+                billingDesc: "Conditions de paiement Net-30 et facturation consolidée.",
+            },
+        },
+        app: {
+            title: "Alimentez votre vie",
+            titleHighlight: "à la demande.",
+            subtitle: "Évitez la station-service. Commandez du carburant, lavage et service d'un simple geste. Disponible maintenant dans votre ville.",
+            eta: "Arrivée Estimée",
+            appStore: "App Store",
+            playStore: "Google Play",
+        },
+        howItWorks: {
+            step1Title: "En Panne",
+            step1Highlight: "de Carburant?",
+            step1Desc: "Ne vous inquiétez pas de trouver une station-service.",
+            step2Title: "Nous Venons",
+            step2Highlight: "Chez Vous.",
+            step2Desc: "Commandez du carburant via l'application et nous vous le livrons directement.",
+        },
+        faq: {
+            title: "Questions Fréquentes",
+            items: [
+                {
+                    q: "Comment fonctionne la livraison de carburant GoGo?",
+                    a: "Demandez simplement du carburant via notre application ou site web, et nos chauffeurs certifiés livreront directement à votre emplacement.",
+                },
+                {
+                    q: "Quelles zones desservez-vous?",
+                    a: "Nous desservons actuellement Cotonou et ses environs au Bénin, avec des plans d'expansion en cours.",
+                },
+                {
+                    q: "Quels types de carburant sont disponibles?",
+                    a: "Nous proposons Super (Essence) et Diesel aux prix réglementés par le gouvernement.",
+                },
+                {
+                    q: "Est-ce sûr?",
+                    a: "Absolument. Nos chauffeurs sont certifiés et nos camions répondent aux normes de sécurité les plus strictes.",
+                },
+            ],
+        },
+        footer: {
+            tagline: "L'avenir de la livraison d'énergie. Nous gardons votre monde en mouvement avec des services fiables, sûrs et à la demande.",
+            company: "Société",
+            aboutUs: "À Propos",
+            careers: "Carrières",
+            newsroom: "Actualités",
+            contact: "Contact",
+            services: "Services",
+            fuelDelivery: "Livraison de Carburant",
+            fleetMaintenance: "Maintenance Flotte",
+            carWash: "Lavage Auto",
+            evCharging: "Recharge VE",
+            legal: "Légal",
+            privacy: "Politique de Confidentialité",
+            terms: "Conditions d'Utilisation",
+            cookies: "Politique de Cookies",
+            copyright: "Tous droits réservés.",
+        },
+        quote: {
+            backToHome: "Retour à l'Accueil",
+            title: "Alimentez votre flotte efficacement au",
+            titleHighlight: "Bénin.",
+            subtitle: "Rejoignez plus de 500 partenaires qui font confiance à GoGo pour le ravitaillement sur site, la maintenance et les analyses de consommation.",
+            benefits: [
+                "Économisez ~15% sur les coûts opérationnels",
+                "Reçus numériques en temps réel",
+                "Support Prioritaire 24/7",
+                "Conditions de Paiement Net-30 disponibles",
+            ],
+            trusted: "Approuvé par les Leaders",
+            form: {
+                companyName: "Nom de l'Entreprise",
+                fleetSize: "Taille de la Flotte",
+                fuelType: "Carburant Principal",
+                email: "Email Professionnel",
+                phone: "Numéro de Téléphone",
+                submit: "Obtenir un Devis",
+                submitting: "Traitement...",
+                disclaimer: "En soumettant, vous acceptez de recevoir des communications commerciales de GoGo Imperial Energy.",
+            },
+            success: {
+                title: "Devis Demandé!",
+                message: "Notre équipe commerciale vous contactera dans les 2 heures ouvrables.",
+                another: "Soumettre une autre demande",
+            },
+        },
+        ticker: {
+            live: "PRIX EN DIRECT",
+            super: "Super (Essence)",
+            diesel: "Diesel",
+            delivery: "Livraison",
+            available: "DISPONIBLE",
+        },
+    },
+} as const;
+
+export type Lang = "en" | "fr";
+export type Dictionary = typeof dictionary;
+export type TranslationKey = keyof typeof dictionary.en;
