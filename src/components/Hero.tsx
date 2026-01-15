@@ -50,11 +50,11 @@ export default function Hero() {
             <div className="relative w-full max-w-7xl mx-auto px-6 -mt-24 md:-mt-32 z-20 pb-16">
                 <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
                     {/* Card A: B2B */}
-                    <div className="group bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col md:flex-row items-center gap-6 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
-                        <div className="w-full md:w-1/2 h-48 rounded-2xl overflow-hidden relative">
+                    <div className="group bg-white rounded-2xl p-8 shadow-tech border border-slate-100 flex flex-col md:flex-row items-center gap-6 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div className="w-full md:w-1/2 h-48 rounded-xl overflow-hidden relative">
                             <Image
                                 src="/assets/images/b2b-driver.jpg"
-                                alt="Fleet of delivery vans"
+                                alt="GoGo Fleet Delivery Service"
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                             />
@@ -66,7 +66,7 @@ export default function Hero() {
                             <p className="text-slate-500 text-sm mb-6 leading-relaxed">{t.b2b.subtitle.substring(0, 80)}...</p>
                             <Link
                                 href="/quote"
-                                className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#d65a15] transition-colors shadow-lg shadow-accent/20"
+                                className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#d65a15] transition-colors shadow-lg shadow-accent/20 min-h-[44px]"
                             >
                                 {t.b2b.cta}
                                 <ArrowRight className="w-4 h-4" />
@@ -75,11 +75,11 @@ export default function Hero() {
                     </div>
 
                     {/* Card B: B2C */}
-                    <div className="group bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col md:flex-row items-center gap-6 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
-                        <div className="w-full md:w-1/2 h-48 rounded-2xl overflow-hidden relative">
+                    <div className="group bg-white rounded-2xl p-8 shadow-tech border border-slate-100 flex flex-col md:flex-row items-center gap-6 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div className="w-full md:w-1/2 h-48 rounded-xl overflow-hidden relative">
                             <Image
                                 src="/assets/images/contact-team.jpg"
-                                alt="Person using mobile app"
+                                alt="GoGo Mobile App Usage"
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                             />
@@ -89,7 +89,7 @@ export default function Hero() {
                             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">For Individuals</span>
                             <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">{t.app.title}</h3>
                             <p className="text-slate-500 text-sm mb-6 leading-relaxed">{t.app.subtitle.substring(0, 80)}...</p>
-                            <button className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-900 border-2 border-slate-200 px-6 py-3 rounded-full text-sm font-bold hover:border-primary hover:bg-primary/5 transition-colors">
+                            <button className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-900 border-2 border-slate-200 px-6 py-3 rounded-full text-sm font-bold hover:border-primary hover:bg-primary/5 transition-colors min-h-[44px]">
                                 <Download className="w-5 h-5" />
                                 {t.nav.quote.includes("B2B") ? "Download App" : "Télécharger l'App"}
                             </button>

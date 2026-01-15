@@ -35,11 +35,11 @@ export default function Navbar() {
             >
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center overflow-hidden relative">
                             <Image
                                 src="/assets/images/logo-main.png"
-                                alt="GoGo"
+                                alt="GoGo Imperial Energy Logo"
                                 width={32}
                                 height={32}
                                 className="object-contain"
@@ -55,7 +55,7 @@ export default function Navbar() {
                                 <a
                                     key={link.label}
                                     href={link.href}
-                                    className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                                    className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors py-2"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -65,7 +65,7 @@ export default function Navbar() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                                    className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors py-2"
                                 >
                                     {link.label}
                                 </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
                         <span className="h-4 w-px bg-slate-300"></span>
                         <button
                             onClick={toggleLang}
-                            className="text-sm font-bold text-slate-900 hover:text-primary transition-colors"
+                            className="text-sm font-bold text-slate-900 hover:text-primary transition-colors min-h-[44px] flex items-center"
                         >
                             {lang === "EN" ? "EN" : "FR"} | {lang === "EN" ? "FR" : "EN"}
                         </button>
@@ -84,7 +84,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-4">
                         <Link
                             href="/quote"
-                            className="hidden sm:flex items-center justify-center bg-black text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            className="hidden sm:flex items-center justify-center bg-accent text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-[#d65a15] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                         >
                             {t.nav.quote}
                         </Link>
@@ -92,7 +92,7 @@ export default function Navbar() {
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden p-2 text-slate-900"
+                            className="md:hidden p-2 text-slate-900 min-h-[44px] min-w-[44px] flex items-center justify-center"
                             aria-label="Toggle menu"
                         >
                             {mobileMenuOpen ? (
@@ -108,14 +108,14 @@ export default function Navbar() {
             {/* Mobile Menu Dropdown */}
             {mobileMenuOpen && (
                 <div className="fixed top-20 left-0 right-0 z-40 bg-white border-b border-gray-100 shadow-lg md:hidden">
-                    <div className="px-6 py-4 flex flex-col gap-4">
+                    <div className="px-6 py-6 flex flex-col gap-4">
                         {navLinks.map((link) => (
                             link.external ? (
                                 <a
                                     key={link.label}
                                     href={link.href}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="text-slate-900 text-lg font-semibold hover:text-primary transition-colors py-2"
+                                    className="text-slate-900 text-lg font-semibold hover:text-primary transition-colors py-3 min-h-[44px] flex items-center border-b border-gray-50"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -126,7 +126,7 @@ export default function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="text-slate-900 text-lg font-semibold hover:text-primary transition-colors py-2"
+                                    className="text-slate-900 text-lg font-semibold hover:text-primary transition-colors py-3 min-h-[44px] flex items-center border-b border-gray-50"
                                 >
                                     {link.label}
                                 </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
                                 toggleLang();
                                 setMobileMenuOpen(false);
                             }}
-                            className="flex items-center gap-2 text-slate-600 py-2"
+                            className="flex items-center gap-2 text-slate-600 py-3 min-h-[44px]"
                         >
                             <span className={lang === "EN" ? "text-primary font-bold" : ""}>English</span>
                             <span>/</span>
@@ -146,7 +146,7 @@ export default function Navbar() {
                         <Link
                             href="/quote"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="bg-black text-white px-6 py-3 rounded-full text-sm font-bold text-center"
+                            className="bg-accent text-white px-6 py-4 rounded-full text-base font-bold text-center mt-2 shadow-lg hover:bg-[#d65a15] transition-colors"
                         >
                             {t.nav.quote}
                         </Link>

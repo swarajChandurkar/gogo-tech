@@ -59,7 +59,7 @@ export default function QuoteForm() {
 
     if (submitted) {
         return (
-            <div className="bg-green-50 rounded-2xl p-8 text-center border border-green-100 animate-in fade-in zoom-in duration-300">
+            <div className="bg-green-50 rounded-2xl p-8 text-center border border-green-100 animate-in fade-in zoom-in duration-300 shadow-tech">
                 <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8" />
                 </div>
@@ -69,7 +69,7 @@ export default function QuoteForm() {
                 </p>
                 <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 text-green-700 font-semibold hover:underline"
+                    className="mt-6 text-green-700 font-semibold hover:underline min-h-[44px] flex items-center justify-center mx-auto"
                 >
                     Submit another request
                 </button>
@@ -78,7 +78,7 @@ export default function QuoteForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.08)] border border-gray-100">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-tech border border-gray-100">
             {serverError && (
                 <div className="bg-red-50 text-red-700 px-4 py-3 rounded-xl text-sm font-medium border border-red-100">
                     {serverError}
@@ -90,7 +90,7 @@ export default function QuoteForm() {
                 <label htmlFor="companyName" className="block text-sm font-bold text-slate-700 mb-2">Company Name</label>
                 <input
                     {...register("companyName")}
-                    className={`w-full px-4 py-3 rounded-xl border ${errors.companyName ? "border-red-500 focus:ring-red-200" : "border-gray-200 focus:ring-primary/50"} focus:border-primary focus:outline-none transition-all`}
+                    className={`w-full px-4 py-3 rounded-xl border ${errors.companyName ? "border-red-500 focus:ring-red-200" : "border-gray-200 focus:ring-primary/50"} focus:border-primary focus:outline-none transition-all min-h-[48px]`}
                     placeholder="e.g. Imperial Logistics"
                 />
                 {errors.companyName && <p className="text-red-500 text-xs mt-1 font-medium">{errors.companyName.message}</p>}
@@ -100,29 +100,43 @@ export default function QuoteForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Fleet Size</label>
-                    <select
-                        {...register("fleetSize")}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.fleetSize ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none bg-white transition-all`}
-                    >
-                        <option value="">Select size...</option>
-                        <option value="1-10">1-10 Vehicles</option>
-                        <option value="11-50">11-50 Vehicles</option>
-                        <option value="50+">50+ Vehicles</option>
-                    </select>
+                    <div className="relative">
+                        <select
+                            {...register("fleetSize")}
+                            className={`w-full px-4 py-3 rounded-xl border ${errors.fleetSize ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none bg-white transition-all appearance-none min-h-[48px]`}
+                        >
+                            <option value="">Select size...</option>
+                            <option value="1-10">1-10 Vehicles</option>
+                            <option value="11-50">11-50 Vehicles</option>
+                            <option value="50+">50+ Vehicles</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                            <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
                     {errors.fleetSize && <p className="text-red-500 text-xs mt-1 font-medium">{errors.fleetSize.message}</p>}
                 </div>
 
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Primary Fuel</label>
-                    <select
-                        {...register("fuelType")}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.fuelType ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none bg-white transition-all`}
-                    >
-                        <option value="">Select fuel...</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Super">Super (Gasoline)</option>
-                        <option value="Both">Both</option>
-                    </select>
+                    <div className="relative">
+                        <select
+                            {...register("fuelType")}
+                            className={`w-full px-4 py-3 rounded-xl border ${errors.fuelType ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none bg-white transition-all appearance-none min-h-[48px]`}
+                        >
+                            <option value="">Select fuel...</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Super">Super (Gasoline)</option>
+                            <option value="Both">Both</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                            <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
                     {errors.fuelType && <p className="text-red-500 text-xs mt-1 font-medium">{errors.fuelType.message}</p>}
                 </div>
             </div>
@@ -134,7 +148,7 @@ export default function QuoteForm() {
                     <input
                         type="email"
                         {...register("email")}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none transition-all min-h-[48px]`}
                         placeholder="name@company.com"
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email.message}</p>}
@@ -145,7 +159,7 @@ export default function QuoteForm() {
                     <input
                         type="tel"
                         {...register("phone")}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.phone ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.phone ? "border-red-500" : "border-gray-200"} focus:border-primary focus:ring-primary/50 focus:outline-none transition-all min-h-[48px]`}
                         placeholder="+229 00 00 00 00"
                     />
                     {errors.phone && <p className="text-red-500 text-xs mt-1 font-medium">{errors.phone.message}</p>}
@@ -156,7 +170,7 @@ export default function QuoteForm() {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-black text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-black text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[56px]"
             >
                 {isSubmitting ? (
                     <>
