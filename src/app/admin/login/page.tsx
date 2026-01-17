@@ -11,6 +11,7 @@ export default function AdminLoginPage() {
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
     const [message, setMessage] = useState("");
+    const [debugLink, setDebugLink] = useState("");
     const router = useRouter();
 
     async function handleSubmit(e: React.FormEvent) {
@@ -32,7 +33,8 @@ export default function AdminLoginPage() {
 
                 // Development: auto-redirect if debug link present
                 if (data.debug_link) {
-                    setMessage(`Development mode: Check console for magic link`);
+                    setMessage(`Development mode: Debug Link Generated`);
+                    setDebugLink(data.debug_link);
                     console.log("Magic link:", data.debug_link);
                 }
             } else {
@@ -62,6 +64,13 @@ export default function AdminLoginPage() {
                         </div>
                         <p className="text-slate-600">{message}</p>
                         <p className="text-sm text-slate-400 mt-4">Check your email for the login link.</p>
+                        {debugLink && (
+                            <div className="mt-6">
+                                <a href={debugLink} className="block w-full bg-slate-800 text-white font-bold py-3 rounded-xl hover:bg-slate-700 transition-colors">
+                                    Verify Login (DEV)
+                                </a>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">

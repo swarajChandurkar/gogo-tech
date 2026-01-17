@@ -1,183 +1,177 @@
 /**
  * Admin Pages List
+ * Simple page management using mock data
  */
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-
-interface PageTranslation {
-    id: string;
-    locale: string;
-    title: string;
-    is_published: boolean;
-    version: number;
-    updated_at: string;
-}
+import { ArrowLeft, FileText, Plus, Edit2, Trash2, Globe, Check } from "lucide-react";
+import { getPages } from "@/lib/local-cms";
 
 interface Page {
     id: string;
     slug: string;
-    page_type: string;
-    fr_required: boolean;
-    page_translations: PageTranslation[];
+    title: { en: string; fr: string };
+    status: string;
+    lastUpdated: string;
 }
 
 export default function AdminPagesPage() {
-    const [pages, setPages] = useState<Page[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [newSlug, setNewSlug] = useState("");
-    const [creating, setCreating] = useState(false);
+    const [pages, setPages] = useState<Page[]>(getPages());
+    const [language, setLanguage] = useState<"en" | "fr">("en");
 
-    useEffect(() => {
-        fetchPages();
-    }, []);
+    const handleAdd = () => {
+        const newPage: Page = {
+            id: String(Date.now()),
+            slug: "new-page",
+            title: { en: "New Page", fr: "Nouvelle Page" },
+            status: "draft",
+            lastUpdated: new Date().toISOString().split('T')[0]
+        };
+        setPages([...pages, newPage]);
+    };
 
-    async function fetchPages() {
-        try {
-            const response = await fetch("/api/admin/pages");
-            if (response.ok) {
-                const data = await response.json();
-                setPages(data.pages || []);
-            }
-        } catch (error) {
-            console.error("Failed to fetch pages:", error);
-        } finally {
-            setLoading(false);
+    const handleDelete = (id: string) => {
+        if (confirm("Delete this page?")) {
+            setPages(pages.filter(p => p.id !== id));
         }
-    }
+    };
 
-    async function createPage() {
-        if (!newSlug.trim()) return;
-        setCreating(true);
-
-        try {
-            const response = await fetch("/api/admin/pages", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ slug: newSlug.toLowerCase().replace(/\s+/g, "-") }),
-            });
-
-            if (response.ok) {
-                setNewSlug("");
-                fetchPages();
-            } else {
-                const data = await response.json();
-                alert(data.error || "Failed to create page");
-            }
-        } catch (error) {
-            console.error("Create failed:", error);
-        } finally {
-            setCreating(false);
-        }
-    }
-
-    function getTranslation(page: Page, locale: string): PageTranslation | undefined {
-        return page.page_translations?.find((t) => t.locale === locale);
-    }
-
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center py-12">
-                <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full"></div>
-            </div>
-        );
-    }
+    const handlePublish = (id: string) => {
+        setPages(pages.map(p =>
+            p.id === id ? { ...p, status: p.status === 'published' ? 'draft' : 'published' } : p
+        ));
+    };
 
     return (
-        <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-slate-900">Pages</h1>
-
-                <div className="flex gap-2">
-                    <input
-                        type="text"
-                        value={newSlug}
-                        onChange={(e) => setNewSlug(e.target.value)}
-                        placeholder="new-page-slug"
-                        className="px-4 py-2 border border-slate-200 rounded-lg"
-                    />
-                    <button
-                        onClick={createPage}
-                        disabled={creating || !newSlug.trim()}
-                        className="px-4 py-2 bg-primary text-black font-bold rounded-lg hover:bg-primary/90 disabled:opacity-50"
-                    >
-                        {creating ? "Creating..." : "Create Page"}
-                    </button>
+        <div className="min-h-screen bg-slate-50">
+            {/* Header */}
+            <header className="bg-white border-b border-slate-200 px-6 py-4">
+                <div className="max-w-4xl mx-auto">
+                    <Link href="/admin" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-4">
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Dashboard
+                    </Link>
+                    <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-blue-500 p-2 rounded-xl text-white">
+                                <FileText className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-slate-900">Pages</h1>
+                                <p className="text-sm text-slate-500">{pages.length} pages</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            {/* Language Toggle */}
+                            <div className="flex bg-slate-100 rounded-lg p-1">
+                                <button
+                                    onClick={() => setLanguage("en")}
+                                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${language === "en" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500"
+                                        }`}
+                                >
+                                    EN
+                                </button>
+                                <button
+                                    onClick={() => setLanguage("fr")}
+                                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${language === "fr" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500"
+                                        }`}
+                                >
+                                    FR
+                                </button>
+                            </div>
+                            <button
+                                onClick={handleAdd}
+                                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                                <Plus className="w-4 h-4" />
+                                Add Page
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </header>
 
-            {pages.length === 0 ? (
-                <div className="bg-white rounded-2xl p-12 text-center border border-slate-100">
-                    <p className="text-slate-500">No pages found. Create your first page above.</p>
+            {/* Pages List */}
+            <main className="max-w-4xl mx-auto px-6 py-8">
+                <div className="space-y-3">
+                    {pages.map((page) => (
+                        <div
+                            key={page.id}
+                            className="bg-white rounded-xl border border-slate-200 p-4 hover:border-blue-300 transition-colors"
+                        >
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
+                                        <FileText className="w-5 h-5 text-slate-400" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-slate-900">
+                                            {page.title[language]}
+                                        </h3>
+                                        <p className="text-sm text-slate-500">
+                                            /{page.slug} • Updated {page.lastUpdated}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    {/* Status Badge */}
+                                    <button
+                                        onClick={() => handlePublish(page.id)}
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${page.status === "published"
+                                                ? "bg-green-100 text-green-700 hover:bg-green-200"
+                                                : "bg-amber-100 text-amber-700 hover:bg-amber-200"
+                                            }`}
+                                    >
+                                        {page.status === "published" ? (
+                                            <>
+                                                <Check className="w-3 h-3" />
+                                                Published
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Globe className="w-3 h-3" />
+                                                Draft
+                                            </>
+                                        )}
+                                    </button>
+                                    {/* Actions */}
+                                    <button
+                                        className="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
+                                        title="Edit"
+                                    >
+                                        <Edit2 className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(page.id)}
+                                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                        title="Delete"
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            ) : (
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                    <table className="w-full">
-                        <thead className="bg-slate-50 border-b border-slate-100">
-                            <tr>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-slate-500">Slug</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-slate-500">English</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-slate-500">French</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-slate-500">FR Required</th>
-                                <th className="text-right px-6 py-4 text-sm font-medium text-slate-500">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                            {pages.map((page) => {
-                                const enTrans = getTranslation(page, "en");
-                                const frTrans = getTranslation(page, "fr");
 
-                                return (
-                                    <tr key={page.id} className="hover:bg-slate-50">
-                                        <td className="px-6 py-4">
-                                            <span className="font-mono text-sm">{page.slug}</span>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {enTrans ? (
-                                                <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs ${enTrans.is_published ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-500"
-                                                    }`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${enTrans.is_published ? "bg-green-500" : "bg-slate-400"}`}></span>
-                                                    {enTrans.is_published ? "Published" : "Draft"}
-                                                </span>
-                                            ) : (
-                                                <span className="text-slate-400 text-sm">—</span>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {frTrans ? (
-                                                <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs ${frTrans.is_published ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"
-                                                    }`}>
-                                                    <span className={`w-1.5 h-1.5 rounded-full ${frTrans.is_published ? "bg-green-500" : "bg-amber-500"}`}></span>
-                                                    {frTrans.is_published ? "Published" : "Missing"}
-                                                </span>
-                                            ) : (
-                                                <span className="text-red-400 text-sm">Not created</span>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {page.fr_required ? (
-                                                <span className="text-amber-600 text-sm">Yes</span>
-                                            ) : (
-                                                <span className="text-slate-400 text-sm">No</span>
-                                            )}
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <Link
-                                                href={`/admin/pages/${page.slug}`}
-                                                className="text-primary hover:underline text-sm font-medium"
-                                            >
-                                                Edit
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                {pages.length === 0 && (
+                    <div className="text-center py-12 bg-white rounded-xl border border-slate-200">
+                        <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                        <p className="text-slate-500">No pages yet. Click "Add Page" to create one.</p>
+                    </div>
+                )}
+
+                {/* Help Text */}
+                <div className="mt-8 bg-slate-100 rounded-xl p-4">
+                    <p className="text-sm text-slate-600">
+                        💡 <strong>Tip:</strong> Click the status badge to toggle between Published and Draft.
+                        Changes are saved automatically.
+                    </p>
                 </div>
-            )}
+            </main>
         </div>
     );
 }

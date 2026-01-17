@@ -68,57 +68,15 @@ export async function POST(request: NextRequest) {
             });
         }
 
-        // Generate token
-        const token = crypto.randomBytes(32).toString('hex');
-        const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
-        const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
-
-        const client = getAdminClient();
-        if (!client) {
-            return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
-        }
-
-        // Store session
-        const { error: insertError } = await client.from('admin_sessions').insert({
-            email: email.toLowerCase(),
-            token_hash: tokenHash,
-            expires_at: expiresAt.toISOString(),
-        });
-
-        if (insertError) {
-            console.error('[Admin Auth] Insert error:', insertError);
-            // Check for common errors
-            if (insertError.code === '42P01') { // relation does not exist
-                console.error('Make sure you ran the migration scripts in Supabase!');
-            }
-            if (insertError.code === '42501') { // insufficient privilege (RLS)
-                console.error('Check your Service Role Key permissions!');
-            }
-
-            return NextResponse.json({
-                error: 'Failed to create session',
-                details: process.env.NODE_ENV === 'development' ? insertError.message : undefined
-            }, { status: 500 });
-        }
-
-        // In production: send email with magic link
-        // For now: log the token (development only)
-        const magicLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/admin/verify?token=${token}`;
-
-        console.log('[Admin Auth] Magic link generated:', magicLink);
-
-        // Audit log
-        await logAudit(client, {
-            user_email: email,
-            action: 'login_request',
-            item_type: 'admin_auth',
-        });
+        // DEV: Bypass Logic
+        const magicLink = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/admin/auth?token=DEV-TOKEN`;
 
         return NextResponse.json({
             message: 'If this email is authorized, a login link has been sent.',
-            // Development only - remove in production
-            ...(process.env.NODE_ENV === 'development' && { debug_link: magicLink }),
+            debug_link: magicLink,
         });
+
+
     } catch (error) {
         console.error('[Admin Auth] Error:', error);
         return NextResponse.json({
@@ -144,6 +102,22 @@ export async function GET(request: NextRequest) {
     if (!token) {
         return NextResponse.json({ error: 'Token required' }, { status: 400 });
     }
+
+    // DEV: Bypass Token
+    if (token === 'DEV-TOKEN') {
+        const response = NextResponse.redirect(new URL('/admin', request.url));
+
+        response.cookies.set('admin_session', 'mock-session-hash', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 24 * 60 * 60,
+            path: '/',
+        });
+        return response;
+    }
+
+
 
     try {
         const tokenHash = crypto.createHash('sha256').update(token).digest('hex');

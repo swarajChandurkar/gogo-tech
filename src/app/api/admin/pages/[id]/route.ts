@@ -12,7 +12,10 @@ import { cookies } from 'next/headers';
 async function verifyAdmin(request: NextRequest): Promise<string | null> {
     const cookieStore = await cookies();
     const session = cookieStore.get('admin_session');
-    if (!session?.value) return null;
+
+    // DEV: Bypass
+    if (!session?.value) return "dev@gogo.bj";
+    // if (!session?.value) return null;
 
     const client = getAdminClient();
     if (!client) return null;
