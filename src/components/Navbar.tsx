@@ -21,9 +21,9 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { href: "#services", label: t.nav.services },
-        { href: "#about", label: t.nav.about },
-        { href: "#safety", label: t.nav.safety },
+        { href: "/mobile-app", label: t.nav.mobileApp },
+        { href: "/trust-faq", label: t.nav.trustFaq },
+        { href: "/about", label: t.nav.about },
         { href: businessPortalUrl, label: t.nav.login, external: true },
     ];
 

@@ -61,12 +61,12 @@ export default function Hero() {
                     {/* Expanding Badge */}
                     <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full mb-6 inline-flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                        <span className="text-xs font-bold text-white uppercase tracking-wider">Now expanding in Montreal</span>
+                        <span className="text-xs font-bold text-white uppercase tracking-wider">{t.heroExpanded.badge}</span>
                     </div>
 
                     {/* Headline */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6 drop-shadow-sm">
-                        {t.hero.title} <span className="text-primary italic">{t.hero.titleHighlight}</span>,<br />so you keep going.
+                        {t.hero.title} <span className="text-primary italic">{t.hero.titleHighlight}</span>,<br />{t.heroExpanded.suffix}
                     </h1>
 
                     {/* Subheadline */}
@@ -127,13 +127,16 @@ export default function Hero() {
                             <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
                         </div>
                         <div className="flex-1 flex flex-col items-start text-left w-full">
-                            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">For Individuals</span>
+                            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-2">{t.heroExpanded.forIndividuals}</span>
                             <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">{t.app.title}</h3>
                             <p className="text-slate-500 text-sm mb-6 leading-relaxed">{t.app.subtitle.substring(0, 80)}...</p>
-                            <button className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-900 border-2 border-slate-200 px-6 py-3 rounded-full text-sm font-bold hover:border-primary hover:bg-primary/5 transition-colors min-h-[44px]">
+                            <Link
+                                href="/mobile-app"
+                                className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-white text-slate-900 border-2 border-slate-200 px-6 py-3 rounded-full text-sm font-bold hover:border-primary hover:bg-primary/5 transition-colors min-h-[44px]"
+                            >
                                 <Download className="w-5 h-5" />
-                                {t.nav.quote.includes("B2B") ? "Download App" : "Télécharger l'App"}
-                            </button>
+                                {t.heroExpanded.getApp}
+                            </Link>
                         </div>
                     </div>
                 </div>

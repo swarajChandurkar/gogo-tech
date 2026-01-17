@@ -46,13 +46,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         if (phase === "merging") {
             // Move to top-left navbar position
             return {
-                scale: 0.25,
-                x: "-42vw", // Move to left edge (navbar logo position)
-                y: "-42vh", // Move to top
+                scale: 0.4,
+                x: "-40vw",
+                y: "-40vh",
                 opacity: 1
             };
         }
-        return { scale: 0.25, x: "-42vw", y: "-42vh", opacity: 0 };
+        return { scale: 0.4, x: "-40vw", y: "-40vh", opacity: 0 };
     };
 
     if (phase === "done") return null;
@@ -81,11 +81,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     ease: [0.76, 0, 0.24, 1],
                 }}
             >
-                {/* Logo Image + Text Row */}
+                {/* Logo Image + Text Row - Centered together */}
                 <motion.div
-                    className="flex items-center gap-2"
+                    className="flex items-center justify-center gap-3"
                     animate={{
-                        gap: phase === "merging" ? "4px" : "8px",
+                        gap: phase === "merging" ? "8px" : "12px",
                     }}
                     transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                 >
@@ -97,7 +97,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                             scale: 1,
                         }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="relative w-10 h-10 md:w-14 md:h-14"
+                        className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0"
                     >
                         <Image
                             src="/assets/images/logo-main.png"
@@ -112,7 +112,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     <div className="relative overflow-hidden">
                         {/* Revealed text (clipped) */}
                         <motion.span
-                            className="text-5xl md:text-7xl font-bold text-white tracking-wide"
+                            className="text-5xl md:text-7xl font-bold text-white tracking-wide block"
                             style={{
                                 clipPath: `inset(0 ${100 - progress}% 0 0)`,
                             }}
@@ -147,19 +147,22 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     )}
                 </AnimatePresence>
 
-                {/* Progress Bar - only during loading */}
+                {/* Progress Bar - matches width of GOGO text approximately */}
                 <AnimatePresence>
                     {phase === "loading" && (
                         <motion.div
                             initial={{ opacity: 1, scaleY: 1 }}
                             exit={{ opacity: 0, scaleY: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="w-40 md:w-56 h-0.5 bg-gray-800 rounded-full overflow-hidden mt-6"
+                            className="mt-8"
+                            style={{ width: "220px" }} // Fixed width to match GOGO text
                         >
-                            <motion.div
-                                className="h-full bg-primary rounded-full"
-                                style={{ width: `${progress}%` }}
-                            />
+                            <div className="h-1 bg-gray-800 rounded-full overflow-hidden">
+                                <motion.div
+                                    className="h-full bg-primary rounded-full"
+                                    style={{ width: `${progress}%` }}
+                                />
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>

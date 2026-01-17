@@ -1,9 +1,5 @@
-/**
- * Mobile App Page (FS-3: Mobile Ecosystem)
- * Dedicated landing page for individual users to download the GoGo app.
- */
+"use client";
 
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -13,30 +9,14 @@ import AppFeatures from "@/components/AppFeatures";
 import HowItWorks from "@/components/HowItWorks";
 import QRDownload from "@/components/QRDownload";
 import appFeaturesData from "@/content/app-features.json";
+import { useLang } from "@/context/LangContext";
 
-export const metadata: Metadata = {
-    title: "Mobile App — Order Fuel in 3 Taps",
-    description:
-        "Download the GoGo app for on-demand fuel delivery in Benin. Order fuel, track your delivery, and pay securely. Available on iOS and Android.",
-    openGraph: {
-        title: "GoGo Mobile App",
-        description: "On-demand fuel delivery at your fingertips.",
-        type: "website",
-        images: [
-            {
-                url: "/assets/images/og-app.jpg",
-                width: 1200,
-                height: 630,
-                alt: "GoGo Mobile App",
-            },
-        ],
-    },
-    alternates: {
-        canonical: "/mobile-app",
-    },
-};
+// Metadata not supported in client component
+// export const metadata: Metadata = { ... }
 
 export default function MobileAppPage() {
+    const { t } = useLang();
+
     return (
         <>
             <Navbar />
@@ -56,15 +36,13 @@ export default function MobileAppPage() {
 
                     <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                         <span className="inline-block bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
-                            For Individuals
+                            {t.heroExpanded.forIndividuals}
                         </span>
                         <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                            Fueling your life{" "}
-                            <span className="text-primary italic">on demand.</span>
+                            {t.app.title} <span className="text-primary italic">{t.app.titleHighlight}</span>
                         </h1>
                         <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10">
-                            Skip the gas station. Order fuel, track your delivery, and pay
-                            securely — all from your phone.
+                            {t.app.subtitle}
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -72,14 +50,14 @@ export default function MobileAppPage() {
                                 href="#download"
                                 className="inline-flex items-center justify-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors shadow-lg"
                             >
-                                Download Now
+                                {t.heroExpanded.getApp}
                                 <ArrowRight className="w-5 h-5" />
                             </a>
                             <a
                                 href="#features"
                                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors border border-white/20"
                             >
-                                See Features
+                                {t.common.seeFeatures}
                             </a>
                         </div>
                     </div>
@@ -98,44 +76,20 @@ export default function MobileAppPage() {
                 <section className="py-16 bg-white">
                     <div className="max-w-4xl mx-auto px-6 text-center">
                         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                            Need help or have questions?
+                            {t.support.title}
                         </h2>
                         <p className="text-slate-600 mb-8">
-                            Our support team is available 24/7 to assist you.
+                            {t.support.subtitle}
                         </p>
                         <Link
                             href="/quote"
                             className="inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-bold hover:bg-[#d65a15] transition-colors"
                         >
-                            Contact Support
+                            {t.support.cta}
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                     </div>
                 </section>
-
-                {/* JSON-LD Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "SoftwareApplication",
-                            name: "GoGo",
-                            operatingSystem: "iOS, Android",
-                            applicationCategory: "LifestyleApplication",
-                            offers: {
-                                "@type": "Offer",
-                                price: "0",
-                                priceCurrency: "USD",
-                            },
-                            aggregateRating: {
-                                "@type": "AggregateRating",
-                                ratingValue: "4.8",
-                                ratingCount: "1200",
-                            },
-                        }),
-                    }}
-                />
             </main>
 
             <Footer />

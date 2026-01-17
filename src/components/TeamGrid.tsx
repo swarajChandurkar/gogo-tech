@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 
+import { useLang } from "@/context/LangContext";
+
 interface TeamMember {
     name: string;
     role: string;
@@ -14,15 +16,17 @@ interface TeamGridProps {
 }
 
 export default function TeamGrid({ members }: TeamGridProps) {
+    const { t } = useLang();
+
     return (
         <section className="py-20 bg-white" id="team">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                        Meet Our Team
+                        {t.aboutPage.team.title}
                     </h2>
                     <p className="text-slate-600 max-w-2xl mx-auto">
-                        The passionate people behind GoGo, working to revolutionize energy delivery in Africa.
+                        {t.aboutPage.team.desc}
                     </p>
                 </div>
 

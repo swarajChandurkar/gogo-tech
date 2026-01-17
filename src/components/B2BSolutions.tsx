@@ -1,29 +1,39 @@
 "use client";
 
 import { Fuel, Wrench, BarChart3, ArrowUpRight } from "lucide-react";
-
-const services = [
-    {
-        icon: Fuel,
-        title: "On-Demand Fueling",
-        description: "Save employee time and reduce mileage by having our certified trucks refuel your fleet overnight or during downtime.",
-        highlighted: true,
-    },
-    {
-        icon: Wrench,
-        title: "Mobile Maintenance",
-        description: "From oil changes to battery replacements, we bring the workshop to your parking lot, minimizing vehicle downtime.",
-        highlighted: false,
-    },
-    {
-        icon: BarChart3,
-        title: "Advanced Analytics",
-        description: "Track fuel consumption, carbon footprint, and spending in real-time with our comprehensive dashboard.",
-        highlighted: false,
-    },
-];
+import { useLang } from "@/context/LangContext";
 
 export default function B2BSolutions() {
+    const { lang, t } = useLang();
+    const isFr = lang === "FR";
+
+    const services = [
+        {
+            icon: Fuel,
+            title: isFr ? "Ravitaillement à la Demande" : "On-Demand Fueling",
+            description: isFr
+                ? "Économisez le temps de vos employés en faisant ravitailler votre flotte par nos camions certifiés pendant la nuit."
+                : "Save employee time and reduce mileage by having our certified trucks refuel your fleet overnight or during downtime.",
+            highlighted: true,
+        },
+        {
+            icon: Wrench,
+            title: isFr ? "Maintenance Mobile" : "Mobile Maintenance",
+            description: isFr
+                ? "Des vidanges aux remplacements de batterie, nous amenons l'atelier à votre parking."
+                : "From oil changes to battery replacements, we bring the workshop to your parking lot, minimizing vehicle downtime.",
+            highlighted: false,
+        },
+        {
+            icon: BarChart3,
+            title: isFr ? "Analyses Avancées" : "Advanced Analytics",
+            description: isFr
+                ? "Suivez la consommation de carburant, l'empreinte carbone et les dépenses en temps réel."
+                : "Track fuel consumption, carbon footprint, and spending in real-time with our comprehensive dashboard.",
+            highlighted: false,
+        },
+    ];
+
     return (
         <section id="services" className="py-24 bg-neutral-surface relative overflow-hidden">
             {/* Decorative gradient blob */}
@@ -33,9 +43,15 @@ export default function B2BSolutions() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div className="max-w-2xl">
-                        <span className="text-accent font-bold text-sm tracking-wider uppercase mb-2 block">Corporate Solutions</span>
+                        <span className="text-accent font-bold text-sm tracking-wider uppercase mb-2 block">
+                            {isFr ? "Solutions Entreprises" : "Corporate Solutions"}
+                        </span>
                         <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
-                            Solutions for <br />Fleets & Corporate.
+                            {isFr ? (
+                                <>Solutions pour <br />Flottes & Entreprises.</>
+                            ) : (
+                                <>Solutions for <br />Fleets & Corporate.</>
+                            )}
                         </h2>
                     </div>
                     <a
@@ -44,14 +60,14 @@ export default function B2BSolutions() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-slate-900 font-bold border-b-2 border-primary pb-0.5 hover:text-accent hover:border-accent transition-colors"
                     >
-                        Go to B2B Platform
+                        {isFr ? "Accéder au Portail B2B" : "Go to B2B Platform"}
                         <ArrowUpRight className="w-5 h-5" />
                     </a>
                 </div>
 
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                         <div
                             key={service.title}
                             className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-transform duration-300"

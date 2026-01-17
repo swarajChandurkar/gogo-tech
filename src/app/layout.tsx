@@ -170,10 +170,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        <FuelTicker />
-
         <Suspense fallback={null}>
           <LangProvider>
+            <FuelTicker />
             {children}
           </LangProvider>
         </Suspense>
