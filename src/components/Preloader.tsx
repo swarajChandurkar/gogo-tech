@@ -23,12 +23,12 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                 if (next >= 100) {
                     clearInterval(timer);
                     // Start merge animation
-                    setTimeout(() => setPhase("merging"), 200);
+                    setTimeout(() => setPhase("merging"), 300);
                     // Complete after merge animation
                     setTimeout(() => {
                         setPhase("done");
                         onComplete();
-                    }, 1200);
+                    }, 1400);
                     return 100;
                 }
                 return next;
@@ -38,6 +38,9 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         return () => clearInterval(timer);
     }, [onComplete]);
 
+    // Smooth cubic-bezier easing for premium feel
+    const smoothEasing = [0.16, 1, 0.3, 1];
+
     // Calculate animation values based on phase
     const getLogoAnimation = () => {
         if (phase === "loading") {
@@ -46,13 +49,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         if (phase === "merging") {
             // Move to top-left navbar position
             return {
-                scale: 0.4,
-                x: "-40vw",
-                y: "-40vh",
-                opacity: 1
+                scale: 0.35,
+                x: "-38vw",
+                y: "-42vh",
+                opacity: 0
             };
         }
-        return { scale: 0.4, x: "-40vw", y: "-40vh", opacity: 0 };
+        return { scale: 0.35, x: "-38vw", y: "-42vh", opacity: 0 };
     };
 
     if (phase === "done") return null;
@@ -61,15 +64,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         <motion.div
             initial={{ opacity: 1 }}
             animate={{
-                opacity: 1,
-                backgroundColor: phase === "merging" ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)"
+                opacity: phase === "merging" ? 0 : 1,
             }}
             transition={{
-                duration: 0.8,
-                ease: [0.76, 0, 0.24, 1],
+                duration: 0.6,
+                ease: smoothEasing,
+                delay: phase === "merging" ? 0.4 : 0,
             }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-none"
-            style={{ backgroundColor: phase === "loading" ? "#000" : "transparent" }}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black pointer-events-none"
         >
             {/* Logo Container with Merge Animation */}
             <motion.div
@@ -77,26 +79,27 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                 initial={{ scale: 1, x: 0, y: 0, opacity: 1 }}
                 animate={getLogoAnimation()}
                 transition={{
-                    duration: 0.8,
-                    ease: [0.76, 0, 0.24, 1],
+                    duration: 1,
+                    ease: smoothEasing,
                 }}
             >
                 {/* Logo Image + Text Row - Centered together */}
                 <motion.div
-                    className="flex items-center justify-center gap-3"
+                    className="flex items-center justify-center"
                     animate={{
-                        gap: phase === "merging" ? "8px" : "12px",
+                        gap: phase === "merging" ? "6px" : "12px",
                     }}
-                    transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                    transition={{ duration: 0.8, ease: smoothEasing }}
                 >
                     {/* Droplet Logo */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
+                        initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
                         animate={{
                             opacity: 1,
                             scale: 1,
+                            rotate: 0,
                         }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.1, ease: smoothEasing }}
                         className="relative w-14 h-14 md:w-16 md:h-16 flex-shrink-0"
                     >
                         <Image
@@ -139,7 +142,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 0.6, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
-                            transition={{ duration: 0.4 }}
+                            transition={{ duration: 0.4, ease: smoothEasing }}
                             className="text-gray-400 text-xs tracking-[0.25em] uppercase mt-4"
                         >
                             Imperial Energy
@@ -147,20 +150,24 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     )}
                 </AnimatePresence>
 
-                {/* Progress Bar - matches width of GOGO text approximately */}
+                {/* Progress Bar - Centered and aligned with logo+text combo */}
                 <AnimatePresence>
                     {phase === "loading" && (
                         <motion.div
-                            initial={{ opacity: 1, scaleY: 1 }}
+                            initial={{ opacity: 0, scaleX: 0.8 }}
+                            animate={{ opacity: 1, scaleX: 1 }}
                             exit={{ opacity: 0, scaleY: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="mt-8"
-                            style={{ width: "220px" }} // Fixed width to match GOGO text
+                            transition={{ duration: 0.3, ease: smoothEasing }}
+                            className="mt-8 w-full max-w-[280px] px-4"
                         >
-                            <div className="h-1 bg-gray-800 rounded-full overflow-hidden">
+                            <div className="h-[3px] bg-gray-800 rounded-full overflow-hidden">
                                 <motion.div
-                                    className="h-full bg-primary rounded-full"
-                                    style={{ width: `${progress}%` }}
+                                    className="h-full rounded-full"
+                                    style={{
+                                        width: `${progress}%`,
+                                        background: "linear-gradient(90deg, #FED75F 0%, #ED6A21 100%)"
+                                    }}
+                                    transition={{ duration: 0.1 }}
                                 />
                             </div>
                         </motion.div>

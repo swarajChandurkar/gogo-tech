@@ -40,7 +40,6 @@ export default function Hero({ cmsContent }: HeroProps) {
                         muted
                         loop
                         playsInline
-                        preload="none"
                         poster="/assets/images/hero-fueling.jpg"
                         className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded && !cmsContent?.image ? 'opacity-60' : 'opacity-0'
                             }`}

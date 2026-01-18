@@ -6,6 +6,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
     FileText,
     HelpCircle,
@@ -60,9 +61,20 @@ export default function AdminDashboard() {
             {/* Header */}
             <header className="bg-white border-b border-slate-200 px-6 py-4">
                 <div className="max-w-6xl mx-auto flex justify-between items-center">
-                    <div>
-                        <h1 className="text-2xl font-bold text-slate-900">GoGo CMS</h1>
-                        <p className="text-sm text-slate-500">Content Management System</p>
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center overflow-hidden">
+                            <Image
+                                src="/assets/images/logo-main.png"
+                                alt="GoGo Logo"
+                                width={32}
+                                height={32}
+                                className="object-contain"
+                            />
+                        </div>
+                        <div>
+                            <h1 className="text-2xl font-bold text-slate-900">GoGo CMS</h1>
+                            <p className="text-sm text-slate-500">Content Management System</p>
+                        </div>
                     </div>
                     <Link
                         href="/"

@@ -34,31 +34,49 @@ export default function MobileAppPage() {
                         ></div>
                     </div>
 
-                    <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-                        <span className="inline-block bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
-                            {t.heroExpanded.forIndividuals}
-                        </span>
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                            {t.app.title} <span className="text-primary italic">{t.app.titleHighlight}</span>
-                        </h1>
-                        <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10">
-                            {t.app.subtitle}
-                        </p>
+                    <div className="relative z-10 max-w-7xl mx-auto px-6">
+                        <div className="flex flex-col lg:flex-row items-center gap-12">
+                            <div className="flex-1 text-center lg:text-left">
+                                <span className="inline-block bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+                                    {t.heroExpanded.forIndividuals}
+                                </span>
+                                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                                    {t.app.title} <span className="text-primary italic">{t.app.titleHighlight}</span>
+                                </h1>
+                                <p className="text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-10">
+                                    {t.app.subtitle}
+                                </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a
-                                href="#download"
-                                className="inline-flex items-center justify-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors shadow-lg"
-                            >
-                                {t.heroExpanded.getApp}
-                                <ArrowRight className="w-5 h-5" />
-                            </a>
-                            <a
-                                href="#features"
-                                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors border border-white/20"
-                            >
-                                {t.common.seeFeatures}
-                            </a>
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                    <a
+                                        href="#download"
+                                        className="inline-flex items-center justify-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors shadow-lg"
+                                    >
+                                        {t.heroExpanded.getApp}
+                                        <ArrowRight className="w-5 h-5" />
+                                    </a>
+                                    <a
+                                        href="#features"
+                                        className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors border border-white/20"
+                                    >
+                                        {t.common.seeFeatures}
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Hero Image */}
+                            <div className="flex-1 flex justify-center lg:justify-end">
+                                <div className="relative w-[280px] md:w-[320px] transform hover:rotate-1 transition-transform duration-500">
+                                    <Image
+                                        src="/assets/images/app-showcase-final.png"
+                                        alt="GoGo App Mobile Interface"
+                                        width={400}
+                                        height={800}
+                                        className="w-full h-auto drop-shadow-2xl"
+                                        priority
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

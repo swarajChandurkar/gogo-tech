@@ -1,15 +1,28 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Preloader from "@/components/Preloader";
 import Hero from "@/components/Hero";
-import TrustStrip from "@/components/TrustStrip";
-import B2BSolutions from "@/components/B2BSolutions";
-import AppSection from "@/components/AppSection";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+
+// Dynamic Imports with loading skeletons for critical path optimization
+const TrustStrip = dynamic(() => import("@/components/TrustStrip"), {
+    loading: () => <div className="h-32 bg-slate-50 opacity-10 animate-pulse" />
+});
+const B2BSolutions = dynamic(() => import("@/components/B2BSolutions"), {
+    loading: () => <div className="h-[600px] bg-white" />
+});
+const AppSection = dynamic(() => import("@/components/AppSection"), {
+    loading: () => <div className="h-[500px] bg-slate-50" />
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+    loading: () => <div className="h-[400px] bg-white" />
+});
+const Footer = dynamic(() => import("@/components/Footer"), {
+    ssr: true // Footer is essential for SEO links, so we keep SSR but code-split
+});
 
 interface HomeContent {
     hero: {

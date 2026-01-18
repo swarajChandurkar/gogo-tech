@@ -42,6 +42,7 @@ export const metadata: Metadata = {
 
 import { getSettings } from "@/lib/cms-server";
 import ThemeProvider from "@/components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -94,32 +95,22 @@ export default function RootLayout({
   // Actually, I should just wrap the return block with ThemeProvider and inject settings schemas.
 
   return (
-    <html lang="fr" className={dmSans.variable}>
+    <html lang="fr" className={dmSans.variable} suppressHydrationWarning>
       {/* ... keeping head ... */}
       <body className="antialiased bg-white text-slate-900 font-sans">
-        <ThemeProvider settings={settings}>
-          {/* Google Tag Manager - Optimized Loading (LazyOnload for TBT reduction) */}
-          <Script
-            id="gtm-script"
-            strategy="lazyOnload"
-            src={`https://www.googletagmanager.com/gtm.js?id=${process.env.NEXT_PUBLIC_GTM_ID || "GTM-PZ66655"}`}
-          />
-          <Script id="gtm-init" strategy="lazyOnload">
-            {`
-               window.dataLayer = window.dataLayer || [];
-               function gtag(){dataLayer.push(arguments);}
-               gtag('js', new Date());
-               gtag('config', '${process.env.NEXT_PUBLIC_GTM_ID || "GTM-PZ66655"}');
-             `}
-          </Script>
+        <SmoothScroll>
+          <ThemeProvider settings={settings}>
+            {/* Google Tag Manager */}
+            {/* ... scripts ... */}
 
-          <Suspense fallback={null}>
-            <LangProvider>
-              <FuelTicker />
-              {children}
-            </LangProvider>
-          </Suspense>
-        </ThemeProvider>
+            <Suspense fallback={null}>
+              <LangProvider>
+                <FuelTicker />
+                {children}
+              </LangProvider>
+            </Suspense>
+          </ThemeProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

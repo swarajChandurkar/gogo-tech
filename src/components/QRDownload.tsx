@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 import { trackAppDownload } from "@/lib/analytics";
+import { motion } from "framer-motion";
 
 interface QRDownloadProps {
     appStoreUrl?: string;
@@ -10,11 +11,11 @@ interface QRDownloadProps {
 }
 
 export default function QRDownload({
-    appStoreUrl = "https://apps.apple.com/us/app/gogo-fuel/id6443653210",
-    playStoreUrl = "https://play.google.com/store/apps/details?id=bj.gogo.customer",
+    appStoreUrl = "https://apps.apple.com/us/iphone/today",
+    playStoreUrl = "https://play.google.com/store/apps?pli=1",
 }: QRDownloadProps) {
     const { lang, t } = useLang();
-    const isFr = lang === "FR" || lang === "fr"; // normalized check
+    const isFr = lang === "fr";
 
     const handleAppStoreClick = () => {
         trackAppDownload("ios");
@@ -32,18 +33,19 @@ export default function QRDownload({
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Left: App Mockup */}
                     <div className="flex-1 relative">
-                        <div className="relative w-[280px] md:w-[320px] mx-auto aspect-[9/19] bg-slate-800 rounded-[3rem] border-8 border-slate-700 shadow-2xl overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent"></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-primary rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                                        <span className="text-2xl font-extrabold text-black">G</span>
-                                    </div>
-                                    <p className="text-white font-bold text-xl">GoGo</p>
-                                    <p className="text-slate-400 text-sm mt-1">Fuel Delivered</p>
-                                </div>
-                            </div>
-                        </div>
+                        <motion.div
+                            animate={{ y: [0, -20, 0] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="relative w-[240px] md:w-[280px] mx-auto"
+                        >
+                            <Image
+                                src="/assets/images/app-showcase-final.png"
+                                alt="GoGo App Login Screen"
+                                width={300}
+                                height={600}
+                                className="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                            />
+                        </motion.div>
                     </div>
 
                     {/* Right: QR + Badges */}

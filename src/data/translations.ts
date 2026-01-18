@@ -191,14 +191,16 @@ export const dictionary = {
             heroTitle: "YOUR FUEL,", // FS Title Start
             heroSuffix: "ANYWHERE AND AT ANY TIME", // FS Title End
             heroDesc: "GoGo is our response to the promise of African ingenuity: using technology to solve our own daily challenges. We don’t just deliver fuel; we deliver time and peace of mind.",
+            originTitle: "Our Origin: Why?",
+            originText: "In Africa, we all know the challenge: endless traffic jams, crowded or sometimes dry gas stations, and those precious minutes lost when we could be with our loved ones or at our offices. GoGo was born from a simple observation: if the world is changing, the way we supply ourselves with energy must change too. We created GoGo to meet a fundamental need for efficiency in our rapidly changing African cities.",
             mission: "Simplify the life of every driver and business in Africa through safe, smart, and sustainable energy delivery technology.",
             vision: "Become the number 1 reflex for mobility in Africa, by creating an ecosystem where energy and services come to the user, and not the other way around.",
             driversTitle: "Our Pillars",
             driversDesc: "We do not copy foreign models; we adapt cutting-edge technology to the realities of our roads, our cities, and our economies.",
             metrics: {
-                innovation: { title: "Innovation by and for Africa", desc: "A solution designed by local talents for the continent." },
-                safety: { title: "Safety and Excellence", desc: "Never compromising on safety. Strict international standards." },
-                community: { title: "Community and Impact", desc: "Optimizing travel to reduce carbon footprint and support local growth." }
+                innovation: { title: "Innovation by and for Africa", desc: "We do not copy foreign models; we adapt cutting-edge technology to the realities of our roads, our cities, and our economies. GoGo is a solution designed by local talents for the continent." },
+                safety: { title: "Safety and Excellence", desc: "We never compromise on safety. Our equipment meets the strictest international standards, guaranteeing risk-free delivery, every time." },
+                community: { title: "Community and Impact", desc: "GoGo is more than an application. It is a driver of growth. By optimizing travel, we reduce the urban carbon footprint and support the productivity of local entrepreneurs." }
             },
             join: {
                 title: "Join Our Mission",
@@ -422,15 +424,17 @@ export const dictionary = {
             ourStory: "Notre Histoire",
             heroTitle: "VOTRE CARBURANT,",
             heroSuffix: "PARTOUT ET À TOUT MOMENT",
-            heroDesc: "GoGo est notre réponse à la promesse du génie africain : utiliser la technologie pour résoudre nos propres défis.",
-            mission: "Simplifier la vie de chaque conducteur et entreprise en Afrique grâce à une technologie de livraison d'énergie sûre.",
-            vision: "Devenir le réflexe numéro 1 de la mobilité en Afrique.",
+            heroDesc: "GoGo est notre réponse à la promesse du génie africain : utiliser la technologie pour résoudre nos propres défis quotidiens. Nous ne livrons pas seulement du carburant ; nous livrons du temps et de la tranquillité d'esprit.",
+            originTitle: "Notre Origine : Pourquoi ?",
+            originText: "En Afrique, nous connaissons tous le défi : les embouteillages interminables, les stations-service bondées ou parfois à sec, et ces précieuses minutes perdues alors que nous pourrions être avec nos proches ou à nos bureaux. GoGo est né d'un constat simple : si le monde change, la manière dont nous nous approvisionnons en énergie doit aussi changer. Nous avons créé GoGo pour répondre à un besoin fondamental d'efficacité dans nos villes africaines en pleine mutation.",
+            mission: "Simplifier la vie de chaque conducteur et entreprise en Afrique grâce à une technologie de livraison d'énergie sûre, intelligente et durable.",
+            vision: "Devenir le réflexe numéro 1 de la mobilité en Afrique, en créant un écosystème où l'énergie et les services viennent à l'utilisateur, et non l'inverse.",
             driversTitle: "Nos Piliers",
             driversDesc: "Nous ne copions pas les modèles étrangers ; nous adaptons la technologie de pointe à nos réalités.",
             metrics: {
-                innovation: { title: "Innovation par et pour l'Afrique", desc: "Solution conçue par des talents locaux pour le continent." },
-                safety: { title: "Sécurité et Excellence", desc: "Ne jamais compromettre la sécurité. Normes internationales strictes." },
-                community: { title: "Communauté et Impact", desc: "Optimiser les déplacements pour réduire l'empreinte carbone." }
+                innovation: { title: "Innovation par et pour l'Afrique", desc: "Nous ne copions pas les modèles étrangers ; nous adaptons la technologie de pointe aux réalités de nos routes, de nos villes et de nos économies. GoGo est une solution conçue par des talents locaux pour le continent." },
+                safety: { title: "Sécurité et Excellence", desc: "Nous ne faisons jamais de compromis sur la sécurité. Nos équipements répondent aux normes internationales les plus strictes, garantissant une livraison sans risque, à chaque fois." },
+                community: { title: "Communauté et Impact", desc: "GoGo est plus qu'une application. C'est un moteur de croissance. En optimisant les déplacements, nous réduisons l'empreinte carbone urbaine et soutenons la productivité des entrepreneurs locaux." }
             },
             join: {
                 title: "Rejoignez Notre Mission",

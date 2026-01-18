@@ -10,13 +10,15 @@ import TeamGrid from "@/components/TeamGrid";
 import aboutData from "@/content/about-data.json";
 import { useLang } from "@/context/LangContext";
 
-// Metadata not supported in client component
-// export const metadata: Metadata = { ... }
-
 export default function AboutPage() {
     const { t } = useLang();
 
     const pillars = [
+        {
+            icon: Zap,
+            title: t.aboutPage.metrics.innovation.title,
+            description: t.aboutPage.metrics.innovation.desc,
+        },
         {
             icon: Shield,
             title: t.aboutPage.metrics.safety.title,
@@ -26,11 +28,6 @@ export default function AboutPage() {
             icon: Users,
             title: t.aboutPage.metrics.community.title,
             description: t.aboutPage.metrics.community.desc,
-        },
-        {
-            icon: Zap,
-            title: t.aboutPage.metrics.innovation.title,
-            description: t.aboutPage.metrics.innovation.desc,
         },
     ];
 
@@ -52,6 +49,42 @@ export default function AboutPage() {
                         <p className="text-xl text-slate-300 max-w-2xl mx-auto">
                             {t.aboutPage.heroDesc}
                         </p>
+                    </div>
+                </section>
+
+                {/* Origin Story Narrative */}
+                <section className="py-20 bg-white">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block">
+                            {t.aboutPage.originTitle}
+                        </span>
+                        <p className="text-xl md:text-2xl text-slate-800 font-medium leading-relaxed italic">
+                            &quot;{t.aboutPage.originText}&quot;
+                        </p>
+                    </div>
+                </section>
+
+                {/* Mission & Vision */}
+                <section className="py-16 bg-slate-50 border-y border-slate-100">
+                    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+                        <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
+                            <h3 className="text-2xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">
+                                <span className="w-2 h-8 bg-primary rounded-full"></span>
+                                {t.aboutPage.mission ? "Our Mission" : "Mission"}
+                            </h3>
+                            <p className="text-lg text-slate-600 leading-relaxed">
+                                {t.aboutPage.mission}
+                            </p>
+                        </div>
+                        <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
+                            <h3 className="text-2xl font-extrabold text-slate-900 mb-4 flex items-center gap-3">
+                                <span className="w-2 h-8 bg-accent rounded-full"></span>
+                                {t.aboutPage.vision ? "Our Vision" : "Vision"}
+                            </h3>
+                            <p className="text-lg text-slate-600 leading-relaxed">
+                                {t.aboutPage.vision}
+                            </p>
+                        </div>
                     </div>
                 </section>
 
