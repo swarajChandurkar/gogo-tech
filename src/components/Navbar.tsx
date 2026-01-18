@@ -21,6 +21,7 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
+        { href: "/b2b", label: t.nav.fleet },
         { href: "/mobile-app", label: t.nav.mobileApp },
         { href: "/trust-faq", label: t.nav.trustFaq },
         { href: "/about", label: t.nav.about },
@@ -76,7 +77,7 @@ export default function Navbar() {
                             onClick={toggleLang}
                             className="text-sm font-bold text-slate-900 hover:text-primary transition-colors min-h-[44px] flex items-center"
                         >
-                            {lang === "EN" ? "EN" : "FR"} | {lang === "EN" ? "FR" : "EN"}
+                            {lang === "en" ? "EN" : "FR"} | {lang === "en" ? "FR" : "EN"}
                         </button>
                     </div>
 

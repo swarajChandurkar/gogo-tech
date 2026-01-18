@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Target, Shield, Zap } from "lucide-react";
+import { ArrowRight, Users, Shield, Zap } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OriginStory from "@/components/OriginStory";
@@ -23,9 +23,9 @@ export default function AboutPage() {
             description: t.aboutPage.metrics.safety.desc,
         },
         {
-            icon: Target,
-            title: t.aboutPage.metrics.reliability.title,
-            description: t.aboutPage.metrics.reliability.desc,
+            icon: Users,
+            title: t.aboutPage.metrics.community.title,
+            description: t.aboutPage.metrics.community.desc,
         },
         {
             icon: Zap,

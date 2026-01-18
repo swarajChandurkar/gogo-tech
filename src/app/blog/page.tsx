@@ -4,7 +4,7 @@
 
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getBlogPosts, CMS_REVALIDATE } from '@/lib/cms';
+import { getBlogPosts } from '@/lib/cms-server';
 
 export const revalidate = 60;
 

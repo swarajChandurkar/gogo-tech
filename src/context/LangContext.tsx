@@ -2,9 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { dictionary } from "@/data/translations";
-
-type Lang = "EN" | "FR";
+import { dictionary, Lang } from "@/data/translations";
 
 // Use a looser type that accepts both EN and FR translations
 type TranslationType = typeof dictionary.en | typeof dictionary.fr;
@@ -19,7 +17,7 @@ const LangContext = createContext<LangContextType | undefined>(undefined);
 
 export function LangProvider({ children }: { children: ReactNode }) {
     // Default to French as per brand requirements
-    const [lang, setLang] = useState<Lang>("FR");
+    const [lang, setLang] = useState<Lang>("fr");
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -27,25 +25,25 @@ export function LangProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const langParam = searchParams.get("lang");
         if (langParam === "en" || langParam === "EN") {
-            setLang("EN");
+            setLang("en");
         } else if (langParam === "fr" || langParam === "FR") {
-            setLang("FR");
+            setLang("fr");
         }
-        // If no param, stays as default (FR)
+        // If no param, stays as default (fr)
     }, [searchParams]);
 
     const toggleLang = () => {
-        const newLang = lang === "EN" ? "FR" : "EN";
+        const newLang = lang === "en" ? "fr" : "en";
         setLang(newLang);
 
         const params = new URLSearchParams(searchParams.toString());
-        params.set("lang", newLang.toLowerCase());
+        params.set("lang", newLang);
         router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     // Get translations based on current language
     const t = useMemo(() => {
-        return lang === "EN" ? dictionary.en : dictionary.fr;
+        return lang === "en" ? dictionary.en : dictionary.fr;
     }, [lang]);
 
     return (

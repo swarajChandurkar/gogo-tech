@@ -1,14 +1,11 @@
-/**
- * Blog Post Page
- */
-
-import Link from 'next/link';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { getBlogPostBySlug, getBlogPosts, CMS_REVALIDATE, getSEO } from '@/lib/cms';
+import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+import { getBlogPostBySlug } from '@/lib/cms-server';
 
-export const revalidate = 60;
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -16,137 +13,142 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
+    const post = getBlogPostBySlug(slug);
 
-    // Use the optimized SEO fetch
-    const seo = await getSEO(slug) || { title: 'Blog Post', description: '' };
-
-    // Fallback to full post fetch if SEO is missing (unlikely if CMS is correct)
-    const post = !seo.title ? await getBlogPostBySlug(slug) : null;
-    const title = seo.title || post?.title || 'Post Not Found';
-    const description = seo.description || (post?.body?.substring(0, 150) + '...') || '';
+    if (!post) {
+        return {
+            title: 'Post Not Found | GoGo',
+        };
+    }
 
     return {
-        title: `${title} | GoGo Blog`,
-        description: description,
-        openGraph: {
-            title: title as string,
-            description: description as string,
-            type: 'article',
-        },
+        title: `${post.title} | GoGo Blog`,
+        description: post.seoDescription || post.title,
     };
-}
-
-export async function generateStaticParams() {
-    const posts = await getBlogPosts();
-    return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
-    const post = await getBlogPostBySlug(slug);
+    const post = getBlogPostBySlug(slug);
 
     if (!post) {
         notFound();
     }
 
-    // Basic body rendering (In production, use a Markdown parser or Rich Text renderer)
-    // For now, we assume body is plain text or basic markdown from CMS
+    // Simple Markdown Renderer
     const renderContent = (content: string) => {
-        return content.split('\n').map((line, i) => {
-            if (line.startsWith('## ')) {
-                return <h2 key={i} className="text-2xl font-bold mt-8 mb-4">{line.replace('## ', '')}</h2>;
+        return content.split('\n\n').map((block, index) => {
+            if (block.startsWith('### ')) {
+                return <h3 key={index} className="text-2xl font-bold text-slate-900 mt-8 mb-4">{block.replace('### ', '')}</h3>;
             }
-            if (line.startsWith('### ')) {
-                return <h3 key={i} className="text-xl font-bold mt-6 mb-3">{line.replace('### ', '')}</h3>;
+            if (block.startsWith('## ')) {
+                return <h2 key={index} className="text-3xl font-bold text-slate-900 mt-12 mb-6">{block.replace('## ', '')}</h2>;
             }
-            if (line.trim().startsWith('- ')) {
-                return <li key={i} className="ml-4 mb-2 list-disc">{line.replace('- ', '')}</li>;
+            if (block.startsWith('# ')) {
+                return <h1 key={index} className="text-4xl font-extrabold text-slate-900 mt-8 mb-6">{block.replace('# ', '')}</h1>;
             }
-            if (line.trim()) {
-                return <p key={i} className="mb-4 text-slate-600 leading-relaxed">{line}</p>;
+            if (block.startsWith('- ')) {
+                const items = block.split('\n').map(line => line.replace('- ', '').trim());
+                return (
+                    <ul key={index} className="list-disc list-inside space-y-2 mb-6 text-slate-700 ml-4">
+                        {items.map((item, i) => {
+                            // Handle basic bolding **text**
+                            const parts = item.split(/(\*\*.*?\*\*)/g);
+                            return (
+                                <li key={i}>
+                                    {parts.map((part, j) => {
+                                        if (part.startsWith('**') && part.endsWith('**')) {
+                                            return <strong key={j} className="text-slate-900">{part.slice(2, -2)}</strong>;
+                                        }
+                                        return part;
+                                    })}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                );
             }
-            return null;
+            if (block.startsWith('1. ')) {
+                const items = block.split('\n').map(line => line.replace(/^\d+\.\s/, '').trim());
+                return (
+                    <ol key={index} className="list-decimal list-inside space-y-2 mb-6 text-slate-700 ml-4">
+                        {items.map((item, i) => {
+                            const parts = item.split(/(\*\*.*?\*\*)/g);
+                            return (
+                                <li key={i}>
+                                    {parts.map((part, j) => {
+                                        if (part.startsWith('**') && part.endsWith('**')) {
+                                            return <strong key={j} className="text-slate-900">{part.slice(2, -2)}</strong>;
+                                        }
+                                        return part;
+                                    })}
+                                </li>
+                            );
+                        })}
+                    </ol>
+                );
+            }
+            // Paragraphs
+            return <p key={index} className="text-lg text-slate-700 leading-relaxed mb-6">{block}</p>;
         });
     };
 
     return (
         <main className="min-h-screen bg-white">
-            {/* Breadcrumb */}
-            <nav className="max-w-4xl mx-auto px-6 py-4">
-                <ol className="flex items-center gap-2 text-sm text-slate-500" itemScope itemType="https://schema.org/BreadcrumbList">
-                    <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                        <Link href="/" itemProp="item" className="hover:text-slate-900">
-                            <span itemProp="name">Home</span>
-                        </Link>
-                        <meta itemProp="position" content="1" />
-                    </li>
-                    <span>/</span>
-                    <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                        <Link href="/blog" itemProp="item" className="hover:text-slate-900">
-                            <span itemProp="name">Blog</span>
-                        </Link>
-                        <meta itemProp="position" content="2" />
-                    </li>
-                    <span>/</span>
-                    <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                        <span itemProp="name" className="text-slate-900 font-medium">{post.title}</span>
-                        <meta itemProp="position" content="3" />
-                    </li>
-                </ol>
-            </nav>
+            <Navbar />
 
-            {/* Article */}
-            <article className="max-w-4xl mx-auto px-6 py-8">
+            <article className="pt-32 pb-24">
                 {/* Header */}
-                <header className="mb-12">
-                    <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
-                        <time dateTime={post.publishedDate}>
-                            {new Date(post.publishedDate).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                            })}
-                        </time>
-                        {post.author && (
-                            <>
-                                <span>•</span>
-                                <span>{post.author}</span>
-                            </>
-                        )}
+                <div className="max-w-3xl mx-auto px-6 mb-12 text-center md:text-left">
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center gap-2 text-slate-500 hover:text-primary mb-8 transition-colors font-medium"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Blog
+                    </Link>
+
+                    <div className="flex flex-wrap gap-3 mb-6 justify-center md:justify-start">
+                        {post.tags?.map(tag => (
+                            <span key={tag} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+                                {tag}
+                            </span>
+                        ))}
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-8 leading-tight">
                         {post.title}
                     </h1>
-                </header>
 
-                {/* Content */}
-                <div className="prose prose-lg prose-slate max-w-none">
-                    {renderContent(post.body || '')}
+                    <div className="flex items-center gap-6 text-slate-500 border-t border-b border-slate-100 py-6 justify-center md:justify-start">
+                        <div className="flex items-center gap-2">
+                            <Calendar className="w-5 h-5" />
+                            <time>
+                                {new Date(post.publishedDate).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}
+                            </time>
+                        </div>
+                        {post.author && (
+                            <div className="flex items-center gap-2">
+                                <User className="w-5 h-5" />
+                                <span>{post.author}</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-12 p-8 bg-slate-50 rounded-2xl text-center">
-                    <h3 className="text-xl font-bold text-slate-900 mb-4">Ready to optimize your fleet?</h3>
-                    <Link
-                        href="/quote"
-                        className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-bold hover:bg-[#d65a15] transition-colors"
-                    >
-                        Request a Quote
-                        <ArrowRight className="w-5 h-5" />
-                    </Link>
+                {/* Content */}
+                <div className="max-w-3xl mx-auto px-6">
+                    <div className="prose prose-lg prose-slate max-w-none">
+                        {renderContent(post.body)}
+                    </div>
                 </div>
             </article>
 
-            {/* Back to Blog */}
-            <div className="max-w-4xl mx-auto px-6 py-8">
-                <Link
-                    href="/blog"
-                    className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
-                >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to Blog
-                </Link>
-            </div>
+            <Footer />
         </main>
     );
 }

@@ -9,6 +9,7 @@ export const dictionary = {
             home: "Home",
             services: "Services",
             about: "About",
+            fleet: "Fleet Solutions",
             safety: "Safety",
             login: "Login",
             mobileApp: "Mobile App",
@@ -17,8 +18,8 @@ export const dictionary = {
         },
         hero: {
             title: "We Go to",
-            titleHighlight: "Your Location",
-            subtitle: "On-demand fuel delivery for your fleet or personal vehicle. Skip the gas station.",
+            titleHighlight: "your location",
+            subtitle: "so you keep going.",
             cta: "Get Started",
             ctaSecondary: "Learn More",
             stats: {
@@ -28,17 +29,17 @@ export const dictionary = {
             },
         },
         b2b: {
-            badge: "FOR BUSINESSES",
-            title: "Fleet Solutions That Scale",
-            subtitle: "Manage your entire fleet's fuel needs from one dashboard. Real-time tracking, invoicing, and analytics.",
-            cta: "Request Quote",
+            badge: "B2B SOLUTIONS",
+            title: "Fleet & Corporate Solutions",
+            subtitle: "Access our B2B Platform for order management, employee vouchers, and consumption reports.",
+            cta: "Access B2B Platform",
             features: {
                 onsite: "On-Site Fueling",
-                onsiteDesc: "We come to your depot, warehouse, or construction site.",
+                onsiteDesc: "Gasoline and Diesel delivered to your fleet.",
                 analytics: "Consumption Analytics",
-                analyticsDesc: "Track every liter with detailed reports and insights.",
-                billing: "Flexible Billing",
-                billingDesc: "Net-30 payment terms and consolidated invoicing.",
+                analyticsDesc: "Track every liter with detailed reports.",
+                billing: "Fleet Management",
+                billingDesc: "Optimize consumption and reduce supply costs.",
             },
         },
         app: {
@@ -59,8 +60,8 @@ export const dictionary = {
         },
         about: {
             badge: "About GoGo",
-            title: "Reinventing energy delivery for a moving world.",
-            description: "GoGo was founded with a simple mission: to give you back your time. Whether you manage a fleet of 500 vehicles or just need to fill up your family SUV, we bring the energy infrastructure to you.",
+            title: "YOUR FUEL, ANYWHERE AND AT ANY TIME",
+            description: "GoGo is our response to the promise of African ingenuity: using technology to solve our own daily challenges. We don’t just deliver fuel; we deliver time and peace of mind.",
             cta: "Read our story",
             searchPlaceholder: "Search answers...",
             noResults: "No questions found matching your search.",
@@ -151,7 +152,7 @@ export const dictionary = {
         },
         // NEW SECTIONS
         heroExpanded: {
-            badge: "Now expanding in Cotonou",
+            badge: "We Go to your location",
             suffix: "so you keep going.",
             forIndividuals: "For Individuals",
             getApp: "Get the App",
@@ -187,15 +188,17 @@ export const dictionary = {
         },
         aboutPage: {
             ourStory: "Our Story",
-            heroTitle: "Reinventing energy delivery",
-            heroSuffix: "for a moving world.",
-            heroDesc: "GoGo was founded with a simple mission: give people back their time by bringing fuel and energy services directly to them.",
-            driversTitle: "What Drives Us",
-            driversDesc: "Three pillars guide everything we do at GoGo.",
+            heroTitle: "YOUR FUEL,", // FS Title Start
+            heroSuffix: "ANYWHERE AND AT ANY TIME", // FS Title End
+            heroDesc: "GoGo is our response to the promise of African ingenuity: using technology to solve our own daily challenges. We don’t just deliver fuel; we deliver time and peace of mind.",
+            mission: "Simplify the life of every driver and business in Africa through safe, smart, and sustainable energy delivery technology.",
+            vision: "Become the number 1 reflex for mobility in Africa, by creating an ecosystem where energy and services come to the user, and not the other way around.",
+            driversTitle: "Our Pillars",
+            driversDesc: "We do not copy foreign models; we adapt cutting-edge technology to the realities of our roads, our cities, and our economies.",
             metrics: {
-                safety: { title: "Safety First", desc: "Every truck, every driver, every delivery meets the highest safety standards." },
-                reliability: { title: "Reliability", desc: "On-time delivery with real-time tracking you can count on." },
-                innovation: { title: "Innovation", desc: "Leveraging technology to make fuel access effortless." }
+                innovation: { title: "Innovation by and for Africa", desc: "A solution designed by local talents for the continent." },
+                safety: { title: "Safety and Excellence", desc: "Never compromising on safety. Strict international standards." },
+                community: { title: "Community and Impact", desc: "Optimizing travel to reduce carbon footprint and support local growth." }
             },
             join: {
                 title: "Join Our Mission",
@@ -237,6 +240,7 @@ export const dictionary = {
             home: "Accueil",
             services: "Services",
             about: "À Propos",
+            fleet: "Solutions Flotte",
             safety: "Sécurité",
             login: "Connexion",
             mobileApp: "Application",
@@ -246,8 +250,8 @@ export const dictionary = {
 
         hero: {
             title: "Nous Venons",
-            titleHighlight: "Chez Vous",
-            subtitle: "Livraison de carburant à la demande pour votre flotte ou véhicule personnel. Évitez la station-service.",
+            titleHighlight: "Chez Vous", // "We Go to your location"
+            subtitle: "pour que vous continuiez d'avancer.",
             cta: "Commencer",
             ctaSecondary: "En Savoir Plus",
             stats: {
@@ -258,22 +262,22 @@ export const dictionary = {
         },
         b2b: {
             badge: "POUR LES ENTREPRISES",
-            title: "Solutions Flotte Évolutives",
-            subtitle: "Gérez les besoins en carburant de toute votre flotte depuis un seul tableau de bord. Suivi en temps réel, facturation et analyses.",
-            cta: "Demander un Devis",
+            title: "Solutions Flotte",
+            subtitle: "Gérez les besoins en carburant de toute votre flotte depuis un seul tableau de bord.",
+            cta: "Accéder à la Plateforme B2B",
             features: {
                 onsite: "Ravitaillement Sur Site",
-                onsiteDesc: "Nous venons à votre dépôt, entrepôt ou chantier.",
+                onsiteDesc: "Essence et Diesel livrés à votre flotte.",
                 analytics: "Analyses de Consommation",
                 analyticsDesc: "Suivez chaque litre avec des rapports détaillés.",
-                billing: "Facturation Flexible",
-                billingDesc: "Conditions de paiement Net-30 et facturation consolidée.",
+                billing: "Gestion de Flotte",
+                billingDesc: "Optimisez la consommation et réduisez les coûts.",
             },
         },
         app: {
             title: "Alimentez votre vie",
             titleHighlight: "à la demande.",
-            subtitle: "Évitez la station-service. Commandez du carburant, lavage et service d'un simple geste. Disponible maintenant dans votre ville.",
+            subtitle: "Évitez la station-service. Commandez du carburant d'un simple geste.",
             eta: "Arrivée Estimée",
             appStore: "App Store",
             playStore: "Google Play",
@@ -288,8 +292,8 @@ export const dictionary = {
         },
         about: {
             badge: "À Propos de GoGo",
-            title: "Réinventer la livraison d'énergie pour un monde en mouvement.",
-            description: "GoGo a été fondé avec une mission simple : vous redonner votre temps. Que vous gériez une flotte de 500 véhicules ou que vous ayez simplement besoin de faire le plein de votre SUV familial, nous vous apportons l'infrastructure énergétique.",
+            title: "VOTRE CARBURANT, PARTOUT ET À TOUT MOMENT",
+            description: "GoGo est notre réponse à la promesse du génie africain : utiliser la technologie pour résoudre nos propres défis quotidiens.",
             cta: "Lire notre histoire",
             searchPlaceholder: "Rechercher des réponses...",
             noResults: "Aucune question correspondant à votre recherche.",
@@ -303,7 +307,7 @@ export const dictionary = {
                 },
                 {
                     q: "Quelles zones desservez-vous?",
-                    a: "Nous desservons actuellement Cotonou et ses environs au Bénin, avec des plans d'expansion en cours.",
+                    a: "Nous desservons actuellement Cotonou et ses environs au Bénin.",
                 },
                 {
                     q: "Quels types de carburant sont disponibles?",
@@ -316,7 +320,7 @@ export const dictionary = {
             ],
         },
         footer: {
-            tagline: "L'avenir de la livraison d'énergie. Nous gardons votre monde en mouvement avec des services fiables, sûrs et à la demande.",
+            tagline: "L'avenir de la livraison d'énergie. Nous gardons votre monde en mouvement.",
             company: "Société",
             aboutUs: "À Propos",
             careers: "Carrières",
@@ -337,7 +341,7 @@ export const dictionary = {
             backToHome: "Retour à l'Accueil",
             title: "Alimentez votre flotte efficacement au",
             titleHighlight: "Bénin.",
-            subtitle: "Rejoignez plus de 500 partenaires qui font confiance à GoGo pour le ravitaillement sur site, la maintenance et les analyses de consommation.",
+            subtitle: "Rejoignez plus de 500 partenaires qui font confiance à GoGo.",
             benefits: [
                 "Économisez ~15% sur les coûts opérationnels",
                 "Reçus numériques en temps réel",
@@ -380,7 +384,7 @@ export const dictionary = {
         },
         // NEW SECTIONS
         heroExpanded: {
-            badge: "Déploiement à Cotonou",
+            badge: "Nous venons chez vous",
             suffix: "pour avancer.",
             forIndividuals: "Pour les Particuliers",
             getApp: "Télécharger",
@@ -388,19 +392,19 @@ export const dictionary = {
         aboutExtended: {
             title: "L'Énergie du",
             titleHighlight: "Futur",
-            description: "Chez GOGO Imperial Energy, nous redéfinissons la livraison de carburant en Afrique de l'Ouest. Nous combinons technologie de pointe et logistique de terrain pour que vous ne soyez jamais à sec.",
+            description: "Chez GOGO Imperial Energy, nous redéfinissons la livraison de carburant en Afrique de l'Ouest.",
             reliability: "Fiabilité",
             reliabilityDesc: "Créneaux garantis, support 24/7.",
             quality: "Contrôle Qualité",
             qualityDesc: "Comptage numérique et qualité certifiée.",
-            support: "Support\n24/7",
+            support: "Support 24/7",
         },
         trust: {
             title: "Certifié & Approuvé",
         },
         promo: {
             title: "Le carburant dans votre poche.",
-            subtitle: "Téléchargez l'application GoGo aujourd'hui et planifiez votre première livraison en moins de 30 secondes.",
+            subtitle: "Téléchargez l'application GoGo aujourd'hui.",
         },
         store: {
             downloadOn: "Télécharger sur",
@@ -410,54 +414,56 @@ export const dictionary = {
             seeFeatures: "Voir Fonctionnalités",
         },
         support: {
-            title: "Besoin d'aide ou des questions ?",
-            subtitle: "Notre équipe est disponible 24/7 pour vous aider.",
+            title: "Besoin d'aide ?",
+            subtitle: "Notre équipe est disponible 24/7.",
             cta: "Contacter le Support",
         },
         aboutPage: {
             ourStory: "Notre Histoire",
-            heroTitle: "Réinventer la distribution d'énergie",
-            heroSuffix: "pour un monde en mouvement.",
-            heroDesc: "GoGo a été fondé avec une mission simple : redonner du temps aux gens en leur apportant carburant et services énergétiques directement.",
-            driversTitle: "Ce qui nous anime",
-            driversDesc: "Trois piliers guident toutes nos actions chez GoGo.",
+            heroTitle: "VOTRE CARBURANT,",
+            heroSuffix: "PARTOUT ET À TOUT MOMENT",
+            heroDesc: "GoGo est notre réponse à la promesse du génie africain : utiliser la technologie pour résoudre nos propres défis.",
+            mission: "Simplifier la vie de chaque conducteur et entreprise en Afrique grâce à une technologie de livraison d'énergie sûre.",
+            vision: "Devenir le réflexe numéro 1 de la mobilité en Afrique.",
+            driversTitle: "Nos Piliers",
+            driversDesc: "Nous ne copions pas les modèles étrangers ; nous adaptons la technologie de pointe à nos réalités.",
             metrics: {
-                safety: { title: "Sécurité Avant Tout", desc: "Chaque camion, chaque chauffeur, chaque livraison respecte les normes de sécurité les plus strictes." },
-                reliability: { title: "Fiabilité", desc: "Livraison à l'heure avec suivi en temps réel sur lequel vous pouvez compter." },
-                innovation: { title: "Innovation", desc: "Tirer parti de la technologie pour rendre l'accès au carburant sans effort." }
+                innovation: { title: "Innovation par et pour l'Afrique", desc: "Solution conçue par des talents locaux pour le continent." },
+                safety: { title: "Sécurité et Excellence", desc: "Ne jamais compromettre la sécurité. Normes internationales strictes." },
+                community: { title: "Communauté et Impact", desc: "Optimiser les déplacements pour réduire l'empreinte carbone." }
             },
             join: {
                 title: "Rejoignez Notre Mission",
-                desc: "Nous recherchons toujours des personnes passionnées pour nous aider à grandir.",
+                desc: "Nous recherchons toujours des personnes passionnées.",
                 partner: "Devenir Partenaire",
                 careers: "Voir les Carrières"
             },
             team: {
                 title: "Rencontrez Notre Équipe",
-                desc: "Les personnes passionnées derrière GoGo, travaillant à révolutionner la distribution d'énergie en Afrique."
+                desc: "Les personnes passionnées derrière GoGo."
             }
         },
         trustPage: {
             title: "Confiance & Support",
-            subtitle: "Nous sommes là pour vous aider. Trouvez des réponses à vos questions et découvrez ce qui fait de GoGo le choix de confiance pour la livraison de carburant.",
+            subtitle: "Nous sommes là pour vous aider.",
             badges: {
-                safety: { title: "Sécurité Avant Tout", desc: "Camions certifiés ADR et chauffeurs formés" },
+                safety: { title: "Sécurité Avant Tout", desc: "Camions certifiés ADR" },
                 support: { title: "Support 24/7", desc: "Assistance client permanente" },
-                quality: { title: "Qualité Certifiée", desc: "Opérations conformes ISO 9001" }
+                quality: { title: "Qualité Certifiée", desc: "Conforme ISO 9001" }
             },
             faqTitle: "Foire Aux Questions",
             latestNews: "Dernières nouvelles de GoGo",
             viewAll: "Voir Tout",
             cta: {
                 title: "Encore des questions ?",
-                desc: "Notre équipe est prête à vous aider à démarrer.",
+                desc: "Notre équipe est prête à vous aider.",
                 b2b: "Demander un Devis B2B",
                 app: "Télécharger l'App"
             },
             blogTeaser: {
                 newsLabel: "Actualités",
-                placeholderTitle: "Bientôt : Mise à jour de l'expansion",
-                placeholderDesc: "Restez à l'écoute des dernières nouvelles de GoGo."
+                placeholderTitle: "Bientôt : Mise à jour",
+                placeholderDesc: "Restez à l'écoute."
             }
         }
     },

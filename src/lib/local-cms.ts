@@ -1,6 +1,7 @@
 /**
  * Local CMS Helper - Mock Data for Testing
  * No database required - uses in-memory data
+ * SAFE FOR CLIENT COMPONENTS
  */
 
 // Mock data store (in-memory for testing)
@@ -58,17 +59,18 @@ export const mockMedia = [
 export const mockSettings = {
     siteName: "GoGo",
     tagline: "Fuel Delivery Made Easy",
-    primaryColor: "#FFD500",
+    primaryColor: "#FED75F",
+    accentColor: "#ED6A21",
     contactEmail: "hello@gogo.bj",
     contactPhone: "+229 XX XX XX XX",
     defaultLanguage: "en"
 };
 
-// Helper functions
+// Helper functions (Client Safe)
 export function getPages() { return mockPages; }
 export function getFaqs() { return mockFaqs; }
 export function getMedia() { return mockMedia; }
-export function getSettings() { return mockSettings; }
+export function getSettings() { return mockSettings; } // Used for initial client state if needed
 
 export function getStats() {
     return {

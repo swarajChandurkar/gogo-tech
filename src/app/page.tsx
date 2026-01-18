@@ -1,38 +1,8 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Preloader from "@/components/Preloader";
-import Hero from "@/components/Hero";
-import TrustStrip from "@/components/TrustStrip";
-import B2BSolutions from "@/components/B2BSolutions";
-import AppSection from "@/components/AppSection";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+import { getPageContent } from "@/lib/cms-server";
+import ClientHome from "@/components/ClientHome";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const content = getPageContent("home");
 
-  return (
-    <>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <main className="min-h-screen bg-white text-slate-900">
-          <Navbar />
-          <Hero />
-          <TrustStrip />
-          <B2BSolutions />
-          <AppSection />
-          <FAQ />
-          <Footer />
-        </main>
-      )}
-    </>
-  );
+  return <ClientHome content={content} />;
 }

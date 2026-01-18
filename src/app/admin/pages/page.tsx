@@ -121,8 +121,8 @@ export default function AdminPagesPage() {
                                     <button
                                         onClick={() => handlePublish(page.id)}
                                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${page.status === "published"
-                                                ? "bg-green-100 text-green-700 hover:bg-green-200"
-                                                : "bg-amber-100 text-amber-700 hover:bg-amber-200"
+                                            ? "bg-green-100 text-green-700 hover:bg-green-200"
+                                            : "bg-amber-100 text-amber-700 hover:bg-amber-200"
                                             }`}
                                     >
                                         {page.status === "published" ? (
@@ -138,12 +138,13 @@ export default function AdminPagesPage() {
                                         )}
                                     </button>
                                     {/* Actions */}
-                                    <button
+                                    <Link
+                                        href={`/admin/pages/${page.slug}`}
                                         className="p-2 text-slate-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
                                         title="Edit"
                                     >
                                         <Edit2 className="w-4 h-4" />
-                                    </button>
+                                    </Link>
                                     <button
                                         onClick={() => handleDelete(page.id)}
                                         className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"

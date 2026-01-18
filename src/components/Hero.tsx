@@ -6,8 +6,16 @@ import { ArrowRight, Download, PlayCircle } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { useState, useRef, useEffect } from "react";
 
-export default function Hero() {
-    const { t } = useLang();
+interface HeroProps {
+    cmsContent?: {
+        title?: { en: string; fr: string };
+        subtitle?: { en: string; fr: string };
+        image?: string;
+    }
+}
+
+export default function Hero({ cmsContent }: HeroProps) {
+    const { t, lang } = useLang();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
@@ -32,18 +40,19 @@ export default function Hero() {
                         muted
                         loop
                         playsInline
+                        preload="none"
                         poster="/assets/images/hero-fueling.jpg"
-                        className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'
+                        className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded && !cmsContent?.image ? 'opacity-60' : 'opacity-0'
                             }`}
                         onLoadedData={() => setIsVideoLoaded(true)}
                     >
-                        <source src="/assets/videos/hero-loop.mp4" type="video/mp4" />
+                        <source src="/assets/videos/hero.mp4" type="video/mp4" />
                     </video>
 
-                    {/* Fallback Image (shown while video loads or if video fails) */}
-                    <div className={`absolute inset-0 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-60'}`}>
+                    {/* Fallback Image / CMS Image */}
+                    <div className={`absolute inset-0 transition-opacity duration-1000 ${isVideoLoaded && !cmsContent?.image ? 'opacity-0' : 'opacity-60'}`}>
                         <Image
-                            src="/assets/images/hero-fueling.jpg"
+                            src={cmsContent?.image || "/assets/images/hero-fueling.jpg"}
                             alt="Modern fuel truck on highway"
                             fill
                             className="object-cover"
@@ -66,12 +75,13 @@ export default function Hero() {
 
                     {/* Headline */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6 drop-shadow-sm">
-                        {t.hero.title} <span className="text-primary italic">{t.hero.titleHighlight}</span>,<br />{t.heroExpanded.suffix}
+                        {cmsContent?.title?.[lang.toLowerCase() as 'en' | 'fr'] || t.hero.title} <span className="text-primary italic">{!cmsContent?.title && t.hero.titleHighlight}</span>
+                        {!cmsContent?.title && <>,<br />{t.heroExpanded.suffix}</>}
                     </h1>
 
                     {/* Subheadline */}
                     <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-medium mb-8">
-                        {t.hero.subtitle}
+                        {cmsContent?.subtitle?.[lang.toLowerCase() as 'en' | 'fr'] || t.hero.subtitle}
                     </p>
 
                     {/* Mobile Primary CTA */}
