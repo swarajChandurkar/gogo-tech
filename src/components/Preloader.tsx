@@ -85,7 +85,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             >
                 {/* Logo Image + Text Row - Centered together */}
                 <motion.div
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center w-full"
                     animate={{
                         gap: phase === "merging" ? "6px" : "12px",
                     }}
@@ -143,7 +143,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                             animate={{ opacity: 0.6, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
                             transition={{ duration: 0.4, ease: smoothEasing }}
-                            className="text-gray-400 text-xs tracking-[0.25em] uppercase mt-4"
+                            className="text-gray-400 text-center text-xs uppercase mt-4"
                         >
                             Imperial Energy
                         </motion.p>

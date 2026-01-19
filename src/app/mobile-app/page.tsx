@@ -10,9 +10,7 @@ import HowItWorks from "@/components/HowItWorks";
 import QRDownload from "@/components/QRDownload";
 import appFeaturesData from "@/content/app-features.json";
 import { useLang } from "@/context/LangContext";
-
-// Metadata not supported in client component
-// export const metadata: Metadata = { ... }
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function MobileAppPage() {
     const { t } = useLang();
@@ -37,35 +35,43 @@ export default function MobileAppPage() {
                     <div className="relative z-10 max-w-7xl mx-auto px-6">
                         <div className="flex flex-col lg:flex-row items-center gap-12">
                             <div className="flex-1 text-center lg:text-left">
-                                <span className="inline-block bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
-                                    {t.heroExpanded.forIndividuals}
-                                </span>
-                                <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                                    {t.app.title} <span className="text-primary italic">{t.app.titleHighlight}</span>
-                                </h1>
-                                <p className="text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-10">
-                                    {t.app.subtitle}
-                                </p>
+                                <ScrollReveal direction="down" delay={0.1}>
+                                    <span className="inline-block bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+                                        {t.heroExpanded.forIndividuals}
+                                    </span>
+                                </ScrollReveal>
+                                <ScrollReveal delay={0.2}>
+                                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                                        {t.app.title} <span className="text-primary italic">{t.app.titleHighlight}</span>
+                                    </h1>
+                                </ScrollReveal>
+                                <ScrollReveal delay={0.3}>
+                                    <p className="text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-10">
+                                        {t.app.subtitle}
+                                    </p>
+                                </ScrollReveal>
 
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                    <a
-                                        href="#download"
-                                        className="inline-flex items-center justify-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors shadow-lg"
-                                    >
-                                        {t.heroExpanded.getApp}
-                                        <ArrowRight className="w-5 h-5" />
-                                    </a>
-                                    <a
-                                        href="#features"
-                                        className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors border border-white/20"
-                                    >
-                                        {t.common.seeFeatures}
-                                    </a>
-                                </div>
+                                <ScrollReveal delay={0.4} direction="up">
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                        <a
+                                            href="#download"
+                                            className="inline-flex items-center justify-center gap-2 bg-primary text-black px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-colors shadow-lg"
+                                        >
+                                            {t.heroExpanded.getApp}
+                                            <ArrowRight className="w-5 h-5" />
+                                        </a>
+                                        <a
+                                            href="#features"
+                                            className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors border border-white/20"
+                                        >
+                                            {t.common.seeFeatures}
+                                        </a>
+                                    </div>
+                                </ScrollReveal>
                             </div>
 
                             {/* Hero Image */}
-                            <div className="flex-1 flex justify-center lg:justify-end">
+                            <ScrollReveal direction="right" delay={0.3} className="flex-1 flex justify-center lg:justify-end">
                                 <div className="relative w-[280px] md:w-[320px] transform hover:rotate-1 transition-transform duration-500">
                                     <Image
                                         src="/assets/images/app-showcase-final.png"
@@ -76,7 +82,7 @@ export default function MobileAppPage() {
                                         priority
                                     />
                                 </div>
-                            </div>
+                            </ScrollReveal>
                         </div>
                     </div>
                 </section>
@@ -93,19 +99,25 @@ export default function MobileAppPage() {
                 {/* CTA Section */}
                 <section className="py-16 bg-white">
                     <div className="max-w-4xl mx-auto px-6 text-center">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                            {t.support.title}
-                        </h2>
-                        <p className="text-slate-600 mb-8">
-                            {t.support.subtitle}
-                        </p>
-                        <Link
-                            href="/quote"
-                            className="inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-bold hover:bg-[#d65a15] transition-colors"
-                        >
-                            {t.support.cta}
-                            <ArrowRight className="w-5 h-5" />
-                        </Link>
+                        <ScrollReveal delay={0.1}>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                                {t.support.title}
+                            </h2>
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.2}>
+                            <p className="text-slate-600 mb-8">
+                                {t.support.subtitle}
+                            </p>
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.3} direction="up">
+                            <Link
+                                href="/quote"
+                                className="inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-bold hover:bg-[#d65a15] transition-colors"
+                            >
+                                {t.support.cta}
+                                <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </ScrollReveal>
                     </div>
                 </section>
             </main>
